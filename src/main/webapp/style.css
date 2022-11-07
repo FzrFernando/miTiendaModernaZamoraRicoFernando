@@ -1,0 +1,205 @@
+html, body{
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+   
+}
+
+*{ 
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+hr{
+    margin-top: 0.7em; 
+    margin-bottom: 0.9em; 
+    padding: 0;
+}
+
+#cuerpo {
+    background-color: #f1f2f5;
+    height: 100vh; 
+    width: 100% ;
+    text-align: center;
+    background-image: url("Jordan-Backgrounds2.jpg");
+    background-size: 100%;
+    padding-top: 15em;
+}
+
+#login {
+    background-color: rgb(255, 255, 255) ;
+    margin: 0 auto;
+    width: 24.95em; 
+    height: 22em;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%); 
+    border-radius: 8px;
+    text-align: center;
+    
+}
+
+#introducir{
+    margin: 1em;
+    height: 3em;
+}
+
+.usuario {
+    width: 27em;
+    height: 3.5em;
+    border-radius: 8px;
+    border: 1px solid #d1d3da;
+}
+
+.password {
+    width: 27em;
+    height: 3.5em;
+    border-radius: 8px;
+    border: 1px solid #d1d3da;
+}
+
+.join {
+	text-decoration:none;
+    width: 27.7em;
+    height: 60px;
+    background: #333;
+    color: white;
+    margin-top: 0;
+    text-align: center;
+    border-radius: 8px;
+    border: 0px; 
+}
+
+.join:hover {
+    width: 27.7em;
+    height: 60px;
+    background: rgb(37, 37, 37);
+    color: white;
+    margin-top: 0;
+    text-align: center;
+    border-radius: 8px;
+    border: 0px;
+    cursor:pointer;  
+}
+
+.join:active {
+    width: 27.7em;
+    height: 60px;
+    background: rgb(0, 0, 0);
+    color: white;
+    margin-top: 0;
+    text-align: center;
+    border-radius: 8px;
+    border: 0px;   
+}
+
+
+
+#main-header {
+	background: #333;
+	color: white;
+	height: 80px;
+	width: 100%;
+}	
+
+#main-header a {
+	color: white;
+}
+
+#logo-header {
+	float: left;
+	padding: 0px 0 0 20px;
+	text-decoration: none;
+    cursor:pointer;    
+}
+	
+nav {
+    float: right;
+}
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    padding-right: 20px;
+}    
+nav ul li {
+    display: inline-block;
+    line-height: 80px;
+    }
+               
+nav ul li a {
+    display: block;
+    padding: 0 10px;
+    text-decoration: none;
+}
+                
+nav ul li a:hover {
+    background: #0b76a6;
+}
+
+#title{
+    text-align: center;
+    margin-left: 0.1em;
+    font-size: 4.5em;
+    font-weight: bolder;
+    color: rgb(209, 209, 209);
+    cursor: pointer;
+    text-decoration:none;
+}
+
+input{
+	padding-left: 0.4rem;
+	padding-right: 0;
+}
+
+/* ---------------------------------ESTILO PAGINA ERROR------------------------------------ */
+
+.error{
+	background-image: url('error.jpg.png');
+ 	height: 100%;
+ 	width: 100%;
+ 	background-size:80%;
+	background-position: center;
+	background-repeat: no-repeat
+}
+
+.botonError {
+	text-decoration:none;
+    width: 27.7em;
+    height: 60px;
+    background: #333;
+    color: white;
+    margin: 0 auto;
+    margin-top: 0;
+    text-align: center;
+    border-radius: 8px;
+    border: 0px; 
+}
+
+.botonError:hover {
+    width: 27.7em;
+    height: 60px;
+    background: rgb(37, 37, 37);
+    color: white;
+    margin: 0 auto;
+    margin-top: 0;
+    text-align: center;
+    border-radius: 8px;
+    border: 0px;
+    cursor:pointer;  
+}
+
+.botonError:active {
+    width: 27.7em;
+    height: 60px;
+    background: rgb(0, 0, 0);
+    color: white;
+    margin: 0 auto;
+    margin-top: 0;
+    text-align: center;
+    border-radius: 8px;
+    border: 0px;   
+}
+
+
+
+
+
+
