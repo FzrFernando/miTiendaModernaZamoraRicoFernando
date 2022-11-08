@@ -32,5 +32,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/estudiante/Dropbox/Entorno Servidor/Driver MySQL/mysql-connector-java-8.0.19.jar"/>
+	<classpathentry kind="lib" path="/home/alberto/Dropbox/Entorno Servidor/Driver MySQL/mysql-connector-java-8.0.19.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
