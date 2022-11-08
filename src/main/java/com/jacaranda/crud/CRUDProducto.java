@@ -7,27 +7,15 @@ import java.util.List;
 import javax.persistence.Query;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.jacaranda.producto.Producto;
 
 
+
 public class CRUDProducto {
-	private StandardServiceRegistry sr;
-	private SessionFactory sf;
-	private Session session;
-	
-	public CRUDProducto() {
-		super();
-		sr = new StandardServiceRegistryBuilder().configure().build();
-		sf = new MetadataSources(sr).buildMetadata().buildSessionFactory();
-		session = sf.openSession();
-	}
 	
 	public Producto readProducto(int id) {
+		Session session = ConnectionBD.getSession();
 		Producto p = null;
 		
 		try {
@@ -39,6 +27,7 @@ public class CRUDProducto {
 	}
 	
 	public List<Producto> loadList(){
+		Session session = ConnectionBD.getSession();
 		List<Producto> list = new ArrayList<>();
 		Query query = session.createQuery("SELECT p FROM PRODUCTO p");
 		list = query.getResultList();
@@ -47,6 +36,7 @@ public class CRUDProducto {
 	}
 	
 	public boolean addProducto(Producto p) {
+		Session session = ConnectionBD.getSession();
 		boolean resultado = false;
 		try {
 			session.getTransaction().begin();
@@ -60,6 +50,7 @@ public class CRUDProducto {
 	}
 	
 	public boolean deleteProducto(Producto p) {
+		Session session = ConnectionBD.getSession();
 		boolean resultado = false;
 		try {
 			
@@ -85,6 +76,7 @@ public class CRUDProducto {
 //			);
 	
 	public boolean updateProducto(Producto p, String nombre, String descripcion, float price, int id_categoria) {
+		Session session = ConnectionBD.getSession();
 		boolean resultado = false;
 		try {
 			

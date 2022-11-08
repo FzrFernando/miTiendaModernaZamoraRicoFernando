@@ -23,7 +23,7 @@
 
 	</header>
 	<div id="cuerpo">
-		<form action="login.jsp" method="get">
+		<form action="loginExec" method="get">
 
 			<div id="login">
 				<br>
@@ -45,12 +45,14 @@
 				¿No tienes cuenta?
 				<br>
 				<div id="registrarse">
-					<a href="#" class=""><button class="join"><h2>Registrarse</h2></button></a>
+					<a href="register.jsp" class=""><button class="join" type="button"><h2>Registrarse</h2></button></a>
 				</div>
+				
 
 			</div>
 
 		</form>
+		
 	</div>
 </body>
 </html>

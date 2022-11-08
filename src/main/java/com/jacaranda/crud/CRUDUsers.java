@@ -6,26 +6,13 @@ import java.util.List;
 import javax.persistence.Query;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.jacaranda.users.Users;
 
 public class CRUDUsers {
-	private StandardServiceRegistry sr;
-	private SessionFactory sf;
-	private Session session;
-
-	public CRUDUsers() {
-		super();
-		sr = new StandardServiceRegistryBuilder().configure().build();
-		sf = new MetadataSources(sr).buildMetadata().buildSessionFactory();
-		session = sf.openSession();
-	}
 
 	public Users readUser(String usuario) {
+		Session session = ConnectionBD.getSession();
 		Users u = null;
 		try {
 			u = (Users) session.get(Users.class, usuario);
@@ -38,11 +25,26 @@ public class CRUDUsers {
 
 	public List<Users> loadList() {
 
+		Session session = ConnectionBD.getSession();
 		List<Users> list = new ArrayList<>();
 		Query query = session.createQuery("SELECT u FROM USUARIO u");
 		list = query.getResultList();
 		return list;
 		
+	}
+	
+	public boolean addUser(Users u) {
+		boolean resultado = false;
+		Session session = ConnectionBD.getSession();
+		try {
+			session.getTransaction().begin();
+			session.saveOrUpdate(u);
+			session.getTransaction().commit();
+			resultado=true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return resultado;
 	}
 
 }

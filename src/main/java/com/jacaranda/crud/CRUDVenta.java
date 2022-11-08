@@ -7,28 +7,16 @@ import java.util.List;
 import javax.persistence.Query;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.jacaranda.venta.Venta;
 
 
 
+
 public class CRUDVenta {
-	private StandardServiceRegistry sr;
-	private SessionFactory sf;
-	private Session session;
-	
-	public CRUDVenta() {
-		super();
-		sr = new StandardServiceRegistryBuilder().configure().build();
-		sf = new MetadataSources(sr).buildMetadata().buildSessionFactory();
-		session = sf.openSession();
-	}
 	
 	public Venta readVenta(int id) {
+		Session session = ConnectionBD.getSession();
 		Venta v = null;
 		
 		try {
@@ -40,6 +28,7 @@ public class CRUDVenta {
 	}
 	
 	public List<Venta> loadList(){
+		Session session = ConnectionBD.getSession();
 		List<Venta> list = new ArrayList<>();
 		Query query = session.createQuery("SELECT v FROM VENTA v");
 		list = query.getResultList();
@@ -48,6 +37,7 @@ public class CRUDVenta {
 	}
 	
 	public boolean addVenta(Venta v) {
+		Session session = ConnectionBD.getSession();
 		boolean resultado = false;
 		try {
 			session.getTransaction().begin();
@@ -61,6 +51,7 @@ public class CRUDVenta {
 	}
 	
 	public boolean deleteVenta(Venta v) {
+		Session session = ConnectionBD.getSession();
 		boolean resultado = false;
 		try {
 			
@@ -88,6 +79,7 @@ public class CRUDVenta {
 //	);
 	
 	public boolean updateVente(Venta v, String usuario, int id_producto, int cantidad, float precio, LocalDate fecha_venta) {
+		Session session = ConnectionBD.getSession();
 		boolean resultado = false;
 		try {
 			
