@@ -14,7 +14,7 @@ import com.jacaranda.producto.Producto;
 
 public class CRUDProducto {
 	
-	public Producto readProducto(int id) {
+	public static Producto readProducto(int id) {
 		Session session = ConnectionBD.getSession();
 		Producto p = null;
 		
@@ -26,7 +26,7 @@ public class CRUDProducto {
 		return p;
 	}
 	
-	public List<Producto> loadList(){
+	public static List<Producto> loadList(){
 		Session session = ConnectionBD.getSession();
 		List<Producto> list = new ArrayList<>();
 		Query query = session.createQuery("SELECT p FROM PRODUCTO p");
@@ -35,7 +35,7 @@ public class CRUDProducto {
 		
 	}
 	
-	public boolean addProducto(Producto p) {
+	public static boolean addProducto(Producto p) {
 		Session session = ConnectionBD.getSession();
 		boolean resultado = false;
 		try {
@@ -49,7 +49,7 @@ public class CRUDProducto {
 		return resultado;
 	}
 	
-	public boolean deleteProducto(Producto p) {
+	public static boolean deleteProducto(Producto p) {
 		Session session = ConnectionBD.getSession();
 		boolean resultado = false;
 		try {
@@ -75,7 +75,7 @@ public class CRUDProducto {
 //			CONSTRAINT FK_PRODUCTO FOREIGN KEY (ID_CATEGORIA) REFERENCES CATEGORIA(ID_CATEGORIA)
 //			);
 	
-	public boolean updateProducto(Producto p, String nombre, String descripcion, float price, int id_categoria) {
+	public static boolean updateProducto(Producto p, String nombre, String descripcion, float price, int id_categoria) {
 		Session session = ConnectionBD.getSession();
 		boolean resultado = false;
 		try {

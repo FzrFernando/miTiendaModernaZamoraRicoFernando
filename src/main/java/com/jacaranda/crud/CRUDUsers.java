@@ -11,7 +11,7 @@ import com.jacaranda.users.Users;
 
 public class CRUDUsers {
 
-	public Users readUser(String usuario) {
+	public static Users readUser(String usuario) {
 		Session session = ConnectionBD.getSession();
 		Users u = null;
 		try {
@@ -23,7 +23,7 @@ public class CRUDUsers {
 		return u;
 	}
 
-	public List<Users> loadList() {
+	public static List<Users> loadList() {
 
 		Session session = ConnectionBD.getSession();
 		List<Users> list = new ArrayList<>();
@@ -33,7 +33,7 @@ public class CRUDUsers {
 		
 	}
 	
-	public boolean addUser(Users u) {
+	public static boolean addUser(Users u) {
 		boolean resultado = false;
 		Session session = ConnectionBD.getSession();
 		try {

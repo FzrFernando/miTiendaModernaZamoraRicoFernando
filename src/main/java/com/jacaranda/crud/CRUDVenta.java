@@ -15,7 +15,7 @@ import com.jacaranda.venta.Venta;
 
 public class CRUDVenta {
 	
-	public Venta readVenta(int id) {
+	public static Venta readVenta(int id) {
 		Session session = ConnectionBD.getSession();
 		Venta v = null;
 		
@@ -27,7 +27,7 @@ public class CRUDVenta {
 		return v;
 	}
 	
-	public List<Venta> loadList(){
+	public static List<Venta> loadList(){
 		Session session = ConnectionBD.getSession();
 		List<Venta> list = new ArrayList<>();
 		Query query = session.createQuery("SELECT v FROM VENTA v");
@@ -36,7 +36,7 @@ public class CRUDVenta {
 		
 	}
 	
-	public boolean addVenta(Venta v) {
+	public static boolean addVenta(Venta v) {
 		Session session = ConnectionBD.getSession();
 		boolean resultado = false;
 		try {
@@ -50,7 +50,7 @@ public class CRUDVenta {
 		return resultado;
 	}
 	
-	public boolean deleteVenta(Venta v) {
+	public static boolean deleteVenta(Venta v) {
 		Session session = ConnectionBD.getSession();
 		boolean resultado = false;
 		try {
@@ -78,7 +78,7 @@ public class CRUDVenta {
 //	CONSTRAINT FK_VENTA_USUARIO FOREIGN KEY (USUARIO) REFERENCES USUARIO(USUARIO)
 //	);
 	
-	public boolean updateVente(Venta v, String usuario, int id_producto, int cantidad, float precio, LocalDate fecha_venta) {
+	public static boolean updateVente(Venta v, String usuario, int id_producto, int cantidad, float precio, LocalDate fecha_venta) {
 		Session session = ConnectionBD.getSession();
 		boolean resultado = false;
 		try {

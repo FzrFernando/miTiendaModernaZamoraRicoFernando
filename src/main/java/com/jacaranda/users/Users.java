@@ -37,8 +37,8 @@ public class Users {
 	private boolean genero;
 	@Column(name = "ADMINISTRADOR")
 	private boolean administrador;
-	@OneToMany(mappedBy = "ID_VENTA", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Venta> listaVenta;
+//	@OneToMany(mappedBy = "ID_VENTA", cascade = CascadeType.ALL, orphanRemoval = true)
+//	private List<Venta> listaVenta;
 
 	public Users(String usuario, String password, String nombre_apellido, LocalDate fecha_nacimiento, boolean genero,
 			boolean administrador) {
@@ -104,13 +104,13 @@ public class Users {
 		this.administrador = administrador;
 	}
 
-	public List<Venta> getListaVenta() {
-		return listaVenta;
-	}
-
-	public void setListaVenta(List<Venta> listaVenta) {
-		this.listaVenta = listaVenta;
-	}
+//	public List<Venta> getListaVenta() {
+//		return listaVenta;
+//	}
+//
+//	public void setListaVenta(List<Venta> listaVenta) {
+//		this.listaVenta = listaVenta;
+//	}
 
 	@Override
 	public int hashCode() {
@@ -133,7 +133,7 @@ public class Users {
 	public String toString() {
 		return "Users [usuario=" + usuario + ", password=" + password + ", nombre_apellido=" + nombre_apellido
 				+ ", fecha_nacimiento=" + fecha_nacimiento + ", genero=" + genero + ", administrador=" + administrador
-				+ ", listaVenta=" + listaVenta + "]";
+			+ ", listaVenta=]"; //+ 	listaVenta  "]";
 	}
 
 	

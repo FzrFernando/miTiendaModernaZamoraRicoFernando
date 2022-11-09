@@ -12,7 +12,7 @@ import com.jacaranda.categoria.Categoria;
 
 public class CRUDCategoria {
 
-	public Categoria readCategoria(int id_categoria) {
+	public static Categoria readCategoria(int id_categoria) {
 		Session session = ConnectionBD.getSession();
 		Categoria c = null;
 		try {
@@ -24,7 +24,7 @@ public class CRUDCategoria {
 		return c;
 	}
 
-	public boolean addCategoria(Categoria c) {
+	public static boolean addCategoria(Categoria c) {
 		Session session = ConnectionBD.getSession();
 		boolean resultado = false;
 		try {
@@ -39,7 +39,7 @@ public class CRUDCategoria {
 		return resultado;
 	}
 
-	public boolean deleteCategoria(Categoria c) {
+	public static boolean deleteCategoria(Categoria c) {
 		Session session = ConnectionBD.getSession();
 		boolean resultado = false;
 		try {
@@ -55,7 +55,7 @@ public class CRUDCategoria {
 		return resultado;
 	}
 
-	public List<Categoria> loadList() {
+	public static List<Categoria> loadList() {
 
 		Session session = ConnectionBD.getSession();
 		List<Categoria> list = new ArrayList<>();
@@ -65,7 +65,7 @@ public class CRUDCategoria {
 
 	}
 
-	public boolean updateCategoria(Categoria c, String nombre, String descripcion) {
+	public static boolean updateCategoria(Categoria c, String nombre, String descripcion) {
 		Session session = ConnectionBD.getSession();
 		boolean resultado = false;
 		try {

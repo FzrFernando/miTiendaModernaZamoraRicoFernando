@@ -36,8 +36,8 @@ public class Producto {
 	private float precio;
 	@Column (name="ID_CATEGORIA")
 	private int id_categoria;
-	@OneToMany(mappedBy = "ID_VENTA", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Venta> listaVenta;
+//	@OneToMany(mappedBy = "ID_VENTA", cascade = CascadeType.ALL, orphanRemoval = true)
+//	private List<Venta> listaVenta;
 	
 
 
@@ -117,14 +117,14 @@ public class Producto {
 	}
 
 	
-	public List<Venta> getListaVenta() {
-		return listaVenta;
-	}
-
-
-	public void setListaVenta(List<Venta> listaVenta) {
-		this.listaVenta = listaVenta;
-	}
+//	public List<Venta> getListaVenta() {
+//		return listaVenta;
+//	}
+//
+//
+//	public void setListaVenta(List<Venta> listaVenta) {
+//		this.listaVenta = listaVenta;
+//	}
 
 
 	@Override
@@ -150,7 +150,7 @@ public class Producto {
 	@Override
 	public String toString() {
 		return "Producto [id_producto=" + id_producto + ", nombre=" + nombre + ", descripcion=" + descripcion
-				+ ", precio=" + precio + ", id_categoria=" + id_categoria + ", listaVenta=" + listaVenta + "]";
+				+ ", precio=" + precio + ", id_categoria=" + id_categoria + ", listaVenta=]";// + listaVenta + "]";
 	}
 
 

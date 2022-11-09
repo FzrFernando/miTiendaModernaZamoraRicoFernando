@@ -23,7 +23,7 @@
 
 	</header>
 	<div id="cuerpo">
-		<form action="loginExec" method="get">
+		<form action="Main" method="post">
 
 			<div id="login">
 				<br>

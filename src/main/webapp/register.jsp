@@ -9,7 +9,7 @@
 </head>
 <body>
 <main>
-        <form action="registerExec.jsp" method="get" id="form">
+        <form action="RegisterExec" method="post" id="form">
             <h1>
                 Registrarse
             </h1>
