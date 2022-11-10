@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.jacaranda.crud.CRUDProducto;
 import com.jacaranda.crud.CRUDUsers;
@@ -52,8 +53,7 @@ public class Main extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect("errorPage.html");
 	}
 
 	/**
@@ -70,33 +70,65 @@ public class Main extends HttpServlet {
 				+ "    <link rel=\"stylesheet\" href=\"style.css\">\n"
 				+ "    <title>Document</title>\n"
 				+ "</head>\n"
-				+ "<body>");
+				+ "<body>"
+				+ "<header id=\"main-header\">\n"
+				+ "<n"
+				+ "String bienvenida=\"\";\n"
+				+ "HttpSession sesion=request.getSession();\n"
+				+ "String isSesion = (String) sesion.getAttribute(\"login\");\n"
+				+ "String userSesion= (String) sesion.getAttribute(\"usuario\");\n"
+				+ "if(isSesion != null && userSesion!=null && isSesion.equals(\"True\")){\n"
+				+ "	bienvenida=(\"Sesion: \"+userSesion);\n"
+				+ "}\n"
+				+ "else{\n"
+				+ "<jsp:forward page=\"errorPage.html\"></jsp:forward>"
+				+ "\n"
+				+ "		<a id=\"logo-header\" href=\"index.jsp\"><img src=\"Images/logor.png\"></a>\n"
+				+ "		<a id=\"title\" href=\"index.jsp\">CarBuy</a>\n"
+				+ "\n"
+				+ "		<nav>\n"
+				+ "			<ul>\n"
+				+ "\n"
+				+ "				<li style=\"border-bottom: 2px solid #f0f2f1;\"><a\n"
+				+ "					href=\"index.jsp\">Productos</a></li>\n"
+				+ "			</ul>\n"
+				+ "		</nav>\n"
+				+ "\n"
+				+ "	</header>\n"
+				+ "	<div id=\"cuerpo\">");
 		
 		boolean existe=false;
 
 		String usuarioCadena= request.getParameter("usuario");
 		String password= request.getParameter("password");
+		boolean usuarioAdmin= false;
 		
    		List<Users>listaUsuarios=CRUDUsers.loadList();
    		for(Users u: listaUsuarios){
    			if (usuarioCadena.equals(u.getUsuario()) && getMD5(password).equals(u.getPassword())){
    				existe=true;
-//   	  			HttpSession sesion=request.getSession();
-//   				sesion.setAttribute("login", "True");
-//   				sesion.setAttribute("usuario", usuarioCadena);
+   	  			HttpSession sesion=request.getSession();
+   				sesion.setAttribute("login", "True");
+   				sesion.setAttribute("usuario", usuarioCadena);
+   				usuarioAdmin=u.isAdministrador();
    			}
    			
    		}
    		
    		if (existe==true){//compronar que entren datos
+   			if(usuarioAdmin) {
+   				response.getWriter().append(
+   						"<a href='annadirProducto'><button class='btReg'>A&ntildeadir Producto</button></a>"
+   						);
+   			}
    			List<Producto> listaProducto = CRUDProducto.loadList();
-   			response.getWriter().append("<table border=\"1\">"
+   			response.getWriter().append("<table border=\"1\" class'tabla'>"
    					+ "				<tr>"
-   					+ "				<td>ID</td>\n"
-   					+ "            <td>Nombre</td>\n"
-   					+ "            <td>Precio</td>\n"
-   					+ "            <td>Descripcion</td>\n"
-   					+ "            <td>ID Categoria</td>"
+   					+ "				<td class='tdId'>ID</td>\n"
+   					+ "            <td class='tdName'>Nombre</td>\n"
+   					+ "            <td class='tdPrice'>Precio</td>\n"
+   					+ "            <td class='tdDescription'>Descripcion</td>\n"
+   					+ "            <td class='tdCategoria'>ID Categoria</td>"
    					+ "				</tr>");
    			for(Producto p : listaProducto) {
    				response.getWriter().append("<tr>");
@@ -107,7 +139,8 @@ public class Main extends HttpServlet {
    				response.getWriter().append("<td>" + p.getId_categoria()+ "</td>");
    				response.getWriter().append("</tr>");
    			}
-   			response.getWriter().append("</table>");
+   			response.getWriter().append("</table>"
+   					+ "</div>");
    			response.getWriter().append("</body>");
    			
 

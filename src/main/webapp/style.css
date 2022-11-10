@@ -6,7 +6,8 @@ html, body{
 }
 
 *{ 
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif; 
+	/* font-family: Calibri; */
 }
 
 hr{
@@ -16,13 +17,13 @@ hr{
 }
 
 #cuerpo {
-    background-color: #f1f2f5;
+    background-color: #006eb8;
     height: 100vh; 
     width: 100% ;
     text-align: center;
     background-image: url("Jordan-Backgrounds2.jpg");
     background-size: 100%;
-    padding-top: 15em;
+    padding-top: 9em;
 }
 
 #login {
@@ -93,21 +94,19 @@ hr{
 
 
 #main-header {
-	background: #333;
-	color: white;
-	height: 80px;
+	background: #f0f2f1;
+	color:	#222;
+	height: 76.5px;
 	width: 100%;
 }	
 
-#main-header a {
-	color: white;
-}
 
 #logo-header {
 	float: left;
-	padding: 0px 0 0 20px;
+	padding: 0px 0 0 10px;
 	text-decoration: none;
-    cursor:pointer;    
+    cursor:pointer;   
+    transform: scaleX(-1); 
 }
 	
 nav {
@@ -118,30 +117,50 @@ nav ul {
     padding: 0;
     list-style: none;
     padding-right: 20px;
+    
 }    
 nav ul li {
     display: inline-block;
-    line-height: 80px;
+    line-height: 75px;
     }
                
 nav ul li a {
     display: block;
     padding: 0 10px;
     text-decoration: none;
+    color: #222;
+    background: rgb(148,140,141, .2);
 }
                 
 nav ul li a:hover {
-    background: #0b76a6;
+    background: #231c23;
+    color: #f0f2f1;
 }
 
 #title{
+	float: left;
     text-align: center;
     margin-left: 0.1em;
     font-size: 4.5em;
     font-weight: bolder;
-    color: rgb(209, 209, 209);
+    color: rgb(37, 37, 37);
     cursor: pointer;
     text-decoration:none;
+    letter-spacing: -9px;
+/*     font-family: Gill Sans; */
+}
+
+#titleBlue{
+	float: left;
+	text-align: center;
+    margin-left: 0.1em;
+    font-size: 4.5em;
+    font-weight: bolder;
+    color: #006eb8;
+    cursor: pointer;
+    text-decoration:none;
+    letter-spacing: -6px;
+/*     font-family: Gill Sans; */
 }
 
 input{
@@ -249,7 +268,7 @@ label {
 }
 
 input:invalid{
-    box-shadow: red 0px 1px 5px;
+    border: 1px solid red;
 }
 
 .btReg {
@@ -286,6 +305,53 @@ input:invalid{
     border-radius: 8px;
     border: 0px;   
 }
+
+
+/* ---------------------------------ESTILO TABLAS------------------------------------ */
+
+
+#tablaInfo{
+	text-align: center;
+	margin: 0 auto;
+	
+}
+
+.tdId{
+	width: 10em;
+}
+
+.tdPrice{
+	width: 8em;
+}
+
+.tdCategoria{
+	width: 8em;
+}
+
+.tdDescription{
+	width: 20em;
+}
+
+.tdName{
+	width: 20em;
+}
+
+
+.tabla{
+	width:98.5%;
+	width:50%;
+	height: 15em;
+	border-collapse: collapse;
+	background-color: rgb(255, 255, 255);
+	padding: 1em;
+	margin: 1em;
+	border: 1px solid black;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%); 
+	table-layout: fixed
+	
+	
+} 
 
 
 

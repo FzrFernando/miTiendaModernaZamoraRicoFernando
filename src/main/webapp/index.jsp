@@ -10,13 +10,15 @@
 <body>
 	<header id="main-header">
 
-		<a id="logo-header" href="index.jsp"><img src="final_75x75.png"></a>
-		<a id="title" href="index.jsp">CochesAdame</a>
+		<a id="title" href="index.jsp">CAR</a>
+		<a id="titleBlue" href="index.jsp">Buy</a>
+		<a id="logo-header" href="index.jsp"><img src="Images/logor.png"></a>
+		
 
 		<nav>
 			<ul>
 
-				<li style="border-bottom: 2px solid #85C2FF;"><a
+				<li style="border-bottom: 2px solid #f0f2f1;"><a
 					href="index.jsp">Log in</a></li>
 			</ul>
 		</nav>
@@ -29,7 +31,7 @@
 				<br>
 				<div id="introducir">
 					<input type="text" class="usuario" id="usuario" name="usuario"
-						placeholder="User" maxlength="50" minlength="1">
+						placeholder="User" maxlength="50" minlength="1" required>
 				</div>
 				<div id="introducir">
 					<input type="password" class="password" id="password"

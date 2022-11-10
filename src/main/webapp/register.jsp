@@ -9,6 +9,20 @@
 </head>
 <body>
 <main>
+<header id="main-header">
+
+		<a id="logo-header" href="index.jsp"><img src="Images/logor.png"></a>
+		<a id="title" href="index.jsp">CarBuy</a>
+
+		<nav>
+			<ul>
+
+				<li style="border-bottom: 2px solid #f0f2f1;"><a
+					href="index.jsp">Log in</a></li>
+			</ul>
+		</nav>
+</header>
+<div id="cuerpo">
         <form action="RegisterExec" method="post" id="form">
             <h1>
                 Registrarse
@@ -66,8 +80,12 @@
             </div>
 
             <button type="submit" class="btReg">Registrarse</button>
+            <br><br>
+            <a href="index.jsp"><button type="button" class="btReg">Volver</button></a>
 
         </form>
+</div>
     </main>
+
 </body>
 </html>

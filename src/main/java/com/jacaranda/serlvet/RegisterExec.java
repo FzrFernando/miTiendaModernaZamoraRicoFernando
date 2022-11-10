@@ -54,8 +54,7 @@ public class RegisterExec extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		response.getWriter().append("Estamos en get, algo sigues haciendo mal");
+		response.sendRedirect("errorPage.html");
    
 	}
 
@@ -66,15 +65,6 @@ public class RegisterExec extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-//		response.getWriter().append("<!doctype html>\n"
-//				+ "<html lang=\"en\">\n"
-//				+ "<head>\n"
-//				+ "  <meta charset=\"utf-8\">\n"
-//				+ "  <title>MyFirstApp</title>\n"
-//				+ "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
-//				+ "</head>\n"
-//				+ "<body>");
-		
 		
 		
 		boolean existe=false;
@@ -104,6 +94,7 @@ public class RegisterExec extends HttpServlet {
 			response.sendRedirect(link);
 //			response.getWriter().append("correcto");
 //			response.getWriter().append("<a href='index.html'");
+
 			
 
 	
