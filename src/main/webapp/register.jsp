@@ -64,14 +64,6 @@
             </div>
 
             <div class="form-field">
-                <label for="Age">
-                    Edad
-                </label><br>
-                <input type="number" name="age" id="age" placeholder="Age" class="register" required>
-                <p><small id="warnings"></small></p>
-            </div>
-
-            <div class="form-field">
                 <label for="Password">
                     Password
                 </label><br>

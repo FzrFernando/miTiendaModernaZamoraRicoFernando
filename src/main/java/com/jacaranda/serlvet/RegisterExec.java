@@ -54,7 +54,12 @@ public class RegisterExec extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("errorPage.html");
+		response.sendRedirect("errorPage.html");//poner con mensaje de error 404, o borrar el get directamente
+		//El rollback tiene que ir en el catch
+		//OPara las session, tendremos que hacer httpSession = request.getSession()
+		//Ahora preguntamos por el getSession() o hacemos el setSession(login, password)
+		
+		//Pondemos poner un contador 
    
 	}
 

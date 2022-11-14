@@ -7,6 +7,7 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 
+import com.jacaranda.categoria.Categoria;
 import com.jacaranda.users.Users;
 
 public class CRUDUsers {

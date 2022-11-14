@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.jacaranda.categoria.Categoria;
+import com.jacaranda.crud.CRUDCategoria;
 import com.jacaranda.crud.CRUDProducto;
 import com.jacaranda.crud.CRUDUsers;
 import com.jacaranda.producto.Producto;
@@ -72,19 +74,9 @@ public class Main extends HttpServlet {
 				+ "</head>\n"
 				+ "<body>"
 				+ "<header id=\"main-header\">\n"
-				+ "<n"
-				+ "String bienvenida=\"\";\n"
-				+ "HttpSession sesion=request.getSession();\n"
-				+ "String isSesion = (String) sesion.getAttribute(\"login\");\n"
-				+ "String userSesion= (String) sesion.getAttribute(\"usuario\");\n"
-				+ "if(isSesion != null && userSesion!=null && isSesion.equals(\"True\")){\n"
-				+ "	bienvenida=(\"Sesion: \"+userSesion);\n"
-				+ "}\n"
-				+ "else{\n"
-				+ "<jsp:forward page=\"errorPage.html\"></jsp:forward>"
-				+ "\n"
-				+ "		<a id=\"logo-header\" href=\"index.jsp\"><img src=\"Images/logor.png\"></a>\n"
-				+ "		<a id=\"title\" href=\"index.jsp\">CarBuy</a>\n"
+				+ "		<a id=\"title\" href=\"index.jsp\">CAR</a>\n"
+				+ "		<a id=\"titleBlue\" href=\"index.jsp\">Buy</a>\n"
+				+ "		<a id=\"logo-header\" href=\"index.jsp\"><img src=\"Images/logor.png\"></a>"
 				+ "\n"
 				+ "		<nav>\n"
 				+ "			<ul>\n"
@@ -103,17 +95,15 @@ public class Main extends HttpServlet {
 		String password= request.getParameter("password");
 		boolean usuarioAdmin= false;
 		
-   		List<Users>listaUsuarios=CRUDUsers.loadList();
-   		for(Users u: listaUsuarios){
-   			if (usuarioCadena.equals(u.getUsuario()) && getMD5(password).equals(u.getPassword())){
+		Users u = CRUDUsers.readUser(usuarioCadena);
+   			if (u != null && (getMD5(password).equals(u.getPassword()))){
    				existe=true;
    	  			HttpSession sesion=request.getSession();
    				sesion.setAttribute("login", "True");
    				sesion.setAttribute("usuario", usuarioCadena);
    				usuarioAdmin=u.isAdministrador();
    			}
-   			
-   		}
+   		
    		
    		if (existe==true){//compronar que entren datos
    			if(usuarioAdmin) {
@@ -121,22 +111,25 @@ public class Main extends HttpServlet {
    						"<a href='annadirProducto'><button class='btReg'>A&ntildeadir Producto</button></a>"
    						);
    			}
+   			
    			List<Producto> listaProducto = CRUDProducto.loadList();
+
    			response.getWriter().append("<table border=\"1\" class'tabla'>"
    					+ "				<tr>"
    					+ "				<td class='tdId'>ID</td>\n"
    					+ "            <td class='tdName'>Nombre</td>\n"
    					+ "            <td class='tdPrice'>Precio</td>\n"
    					+ "            <td class='tdDescription'>Descripcion</td>\n"
-   					+ "            <td class='tdCategoria'>ID Categoria</td>"
+   					+ "            <td class='tdCategoria'>Categoria</td>"
    					+ "				</tr>");
    			for(Producto p : listaProducto) {
+   	   			Categoria c = CRUDCategoria.readCategoria(p.getId_categoria());
    				response.getWriter().append("<tr>");
    				response.getWriter().append("<td>" + p.getId() + "</td>");
    				response.getWriter().append("<td>" + p.getNombre() + "</td>");
    				response.getWriter().append("<td>" + p.getPrecio() + " $</td>");
    				response.getWriter().append("<td>" + p.getDescripcion() + "</td>");
-   				response.getWriter().append("<td>" + p.getId_categoria()+ "</td>");
+   				response.getWriter().append("<td>" + c.getNombre()+ "</td>");
    				response.getWriter().append("</tr>");
    			}
    			response.getWriter().append("</table>"

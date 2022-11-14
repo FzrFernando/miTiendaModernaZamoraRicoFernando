@@ -71,7 +71,7 @@ public class Categoria {
 		return listaProducto;
 	}
 
-	public void setShoesList(List<Producto> listaProducto) {
+	public void setProductoList(List<Producto> listaProducto) {
 		this.listaProducto = listaProducto;
 	}
 
@@ -95,7 +95,7 @@ public class Categoria {
 	@Override
 	public String toString() {
 		return "Categoria [id_categoria =" + id_categoria + ", nombre=" + nombre + ", descripcion=" + descripcion
-				+ ", shoesList=" + listaProducto + "]";
+				+ ", ProductoList=" + listaProducto + "]";
 	}
 
 }

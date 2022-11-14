@@ -13,7 +13,6 @@
 		<a id="title" href="index.jsp">CAR</a>
 		<a id="titleBlue" href="index.jsp">Buy</a>
 		<a id="logo-header" href="index.jsp"><img src="Images/logor.png"></a>
-		
 
 		<nav>
 			<ul>
