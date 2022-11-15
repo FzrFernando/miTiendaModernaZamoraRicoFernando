@@ -44,9 +44,9 @@
 				</div>
 				<br>
 				¿No tienes cuenta?
-				<br>
+				<br><br>
 				<div id="registrarse">
-					<a href="register.jsp" class=""><button class="join" type="button"><h2>Registrarse</h2></button></a>
+					<a href="register.jsp" class=""><button class="registerButton" type="button"><h2>Registrarse</h2></button></a>
 				</div>
 				
 

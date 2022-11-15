@@ -88,22 +88,23 @@ public class Main extends HttpServlet {
    			}
    		
    		
-   		if (existe==true){//compronar que entren datos
+   		if (existe==true){//comprobar que entren datos
    			if(usuarioAdmin) {
    				response.getWriter().append(
-   						"<a href='annadirProducto'><button class='btReg'>A&ntildeadir Producto</button></a>"
+   						"<br>"+
+   						"<a href='annadirProducto'><button class='registerButton' id='bold'>A&ntildeadir Producto</button></a>"
    						);
    			}
    			
    			List<Producto> listaProducto = CRUDProducto.loadList();
 
-   			response.getWriter().append("<table border=\"1\" class'tabla'>"
+   			response.getWriter().append("<table border=\"1\" class='tabla'>"
    					+ "				<tr>"
-   					+ "				<td class='tdId'>ID</td>\n"
-   					+ "            <td class='tdName'>Nombre</td>\n"
-   					+ "            <td class='tdPrice'>Precio</td>\n"
-   					+ "            <td class='tdDescription'>Descripcion</td>\n"
-   					+ "            <td class='tdCategoria'>Categoria</td>"
+   					+ "				<td class='tdId' id='bold'>ID</td>\n"
+   					+ "            <td class='tdName' id='bold'>Nombre</td>\n"
+   					+ "            <td class='tdPrice' id='bold'>Precio</td>\n"
+   					+ "            <td class='tdDescription' id='bold'>Descripcion</td>\n"
+   					+ "            <td class='tdCategoria' id='bold'>Categoria</td>"
    					+ "				</tr>");
    			for(Producto p : listaProducto) {
    	   			Categoria c = CRUDCategoria.readCategoria(p.getId_categoria());

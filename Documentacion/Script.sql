@@ -66,7 +66,7 @@ insert into cochesAdame.PRODUCTO (id_producto, nombre, descripcion, precio, id_c
 insert into cochesAdame.PRODUCTO (id_producto, nombre, descripcion, precio, id_categoria) values (22, 'Fury', 'Other physeal fracture of lower end of humerus', 35.15, 2);
 insert into cochesAdame.PRODUCTO (id_producto, nombre, descripcion, precio, id_categoria) values (23, 'Grand Vitara', 'Pnctr w/o fb of r idx fngr w damage to nail, sequela', 61.86, 3);
 insert into cochesAdame.PRODUCTO (id_producto, nombre, descripcion, precio, id_categoria) values (24, 'C8', 'Displ oblique fx shaft of r femr, 7thR', 23.21, 4);
-insert into cochesAdame.PRODUCTO (id_producto, nombre, descripcion, precio, id_categoria) values (25, 'Pajero', 'Actvty, oth w oth sports & athletics played as a team or grp', 74.27, 5);
+insert into cochesAdame.PRODUCTO (id_producto, nombre, descripcion, precio, id_categoria) values (25, 'Parejo', 'Actvty, oth w oth sports & athletics played as a team or grp', 74.27, 5);
 
 	CREATE TABLE cochesAdame.VENTA(
 	ID_VENTA NUMERIC(5),
