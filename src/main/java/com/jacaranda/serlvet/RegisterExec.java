@@ -1,21 +1,19 @@
 package com.jacaranda.serlvet;
 
 import java.io.IOException;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.jacaranda.crud.CRUDUsers;
-import com.jacaranda.users.Users;
+import com.jacaranda.crud.Utilities;
+import com.jacaranda.model.Users;
 
 /**
  * Servlet implementation class RegisterExec
@@ -33,21 +31,7 @@ public class RegisterExec extends HttpServlet {
 	}
 
 	
-	public static String getMD5(String input) {
-			try {
-				MessageDigest md = MessageDigest.getInstance("MD5");
-				byte[] messageDigest = md.digest(input.getBytes());
-				BigInteger number = new BigInteger(1, messageDigest);
-				String hashtext = number.toString(16);
-
-				while (hashtext.length() < 32) {
-					hashtext = "0" + hashtext;
-				}
-				return hashtext;
-			} catch (NoSuchAlgorithmException e) {
-				throw new RuntimeException(e);
-			}
-		}
+	
 
 
 	/**
@@ -75,27 +59,31 @@ public class RegisterExec extends HttpServlet {
 		boolean existe=false;
 		String link = "index.jsp";
 		String usuarioCadena= request.getParameter("username");
+		for (int i = 0; i < usuarioCadena.length(); i++) {
+            if (usuarioCadena.charAt(i) == ' ') 
+            	response.sendRedirect("errorPage.html");
+        }
+
 		
-   		List<Users>listaUsuarios=CRUDUsers.loadList();
-   		for(Users u: listaUsuarios){
-   			if (usuarioCadena.equals(u.getUsuario())){
-   				existe=true;
-   			}
-   			
-   		}
+		
+		Users u = CRUDUsers.readUser(usuarioCadena);
+		if (u != null){
+				existe=true;
+			}
+		
+  
    		
-   		if (existe==false){//compronar que entren datos
+   		if (existe==false){//comprobar que entren datos
    			String password= request.getParameter("password");
    			String nombreCompleto = request.getParameter("nombre_apellido");
-   			LocalDate date = LocalDate.parse(request.getParameter("fecha_nacimiento"));
-   		 	LocalDate newDate =LocalDate.of(date.getYear(), date.getMonth(), date.getDayOfMonth()+1); 
+   			LocalDateTime date = LocalDateTime.of(LocalDate.parse(request.getParameter("fecha_nacimiento")), LocalTime.now());
    			boolean sex = Boolean.parseBoolean(request.getParameter("sex"));
-  			Users newU = new Users(usuarioCadena,getMD5(password),nombreCompleto,date,sex,false);
+  			Users newU = new Users(usuarioCadena,Utilities.getMD5(password),nombreCompleto,date,sex,false);
   			CRUDUsers.addUser(newU);
   			
-  			HttpSession sesion=request.getSession();
-			sesion.setAttribute("login", "True");
-			sesion.setAttribute("usuario", usuarioCadena);
+//  			HttpSession sesion=request.getSession();
+//			sesion.setAttribute("login", "True");
+//			sesion.setAttribute("usuario", usuarioCadena);
 			response.sendRedirect(link);
 //			response.getWriter().append("correcto");
 //			response.getWriter().append("<a href='index.html'");

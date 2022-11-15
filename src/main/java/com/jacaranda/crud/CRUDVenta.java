@@ -8,7 +8,7 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 
-import com.jacaranda.venta.Venta;
+import com.jacaranda.model.Venta;
 
 
 

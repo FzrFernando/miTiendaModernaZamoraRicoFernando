@@ -1,4 +1,4 @@
-package com.jacaranda.producto;
+package com.jacaranda.model;
 
 import java.util.List;
 import java.util.Objects;
@@ -8,8 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import com.jacaranda.venta.Venta;
 
 //CREATE TABLE PRODUCTO(
 //		ID_PRODUCTO NUMERIC(5) UNIQUE,

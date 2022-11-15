@@ -1,4 +1,4 @@
-package com.jacaranda.categoria;
+package com.jacaranda.model;
 
 import java.util.List;
 import java.util.Objects;
@@ -8,8 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import com.jacaranda.producto.Producto;
 
 //CREATE TABLE CATEGORIA(
 //		ID_CATEGORIA NUMERIC(5) UNIQUE,
@@ -28,8 +26,8 @@ public class Categoria {
 	private String nombre;
 	@Column(name = "DESCRIPCION")
 	private String descripcion;
-	@OneToMany(mappedBy = "ID_PRODUCTO", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Producto> listaProducto;
+//	@OneToMany(mappedBy = "ID_PRODUCTO", cascade = CascadeType.ALL, orphanRemoval = true)
+//	private List<Producto> listaProducto;
 
 	public Categoria(int id_categoria, String nombre, String descripcion) {
 		super();
@@ -67,13 +65,13 @@ public class Categoria {
 		this.descripcion = descripcion;
 	}
 
-	public List<Producto> getShoesList() {
-		return listaProducto;
-	}
-
-	public void setProductoList(List<Producto> listaProducto) {
-		this.listaProducto = listaProducto;
-	}
+//	public List<Producto> getShoesList() {
+//		return listaProducto;
+//	}
+//
+//	public void setProductoList(List<Producto> listaProducto) {
+//		this.listaProducto = listaProducto;
+//	}
 
 	@Override
 	public int hashCode() {
@@ -94,8 +92,8 @@ public class Categoria {
 
 	@Override
 	public String toString() {
-		return "Categoria [id_categoria =" + id_categoria + ", nombre=" + nombre + ", descripcion=" + descripcion
-				+ ", ProductoList=" + listaProducto + "]";
+		return "Categoria [id_categoria =" + id_categoria + ", nombre=" + nombre + ", descripcion=" + descripcion + "]";
+//				+ ", ProductoList=" + listaProducto + "]";
 	}
 
 }

@@ -7,7 +7,7 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 
-import com.jacaranda.categoria.Categoria;
+import com.jacaranda.model.Categoria;
 
 
 public class CRUDCategoria {

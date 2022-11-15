@@ -1,4 +1,4 @@
-package com.jacaranda.venta;
+package com.jacaranda.model;
 
 import java.time.LocalDate;
 import java.util.Objects;

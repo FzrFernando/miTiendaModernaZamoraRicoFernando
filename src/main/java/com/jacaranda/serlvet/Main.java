@@ -1,9 +1,6 @@
 package com.jacaranda.serlvet;
 
 import java.io.IOException;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,12 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.jacaranda.categoria.Categoria;
 import com.jacaranda.crud.CRUDCategoria;
 import com.jacaranda.crud.CRUDProducto;
 import com.jacaranda.crud.CRUDUsers;
-import com.jacaranda.producto.Producto;
-import com.jacaranda.users.Users;
+import com.jacaranda.crud.Utilities;
+import com.jacaranda.model.Categoria;
+import com.jacaranda.model.Producto;
+import com.jacaranda.model.Users;
 
 /**
  * Servlet implementation class Main
@@ -35,21 +33,6 @@ public class Main extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	public static String getMD5(String input) {
-		try {
-			MessageDigest md = MessageDigest.getInstance("MD5");
-			byte[] messageDigest = md.digest(input.getBytes());
-			BigInteger number = new BigInteger(1, messageDigest);
-			String hashtext = number.toString(16);
-
-			while (hashtext.length() < 32) {
-				hashtext = "0" + hashtext;
-			}
-			return hashtext;
-		} catch (NoSuchAlgorithmException e) {
-			throw new RuntimeException(e);
-		}
-	}
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -96,7 +79,7 @@ public class Main extends HttpServlet {
 		boolean usuarioAdmin= false;
 		
 		Users u = CRUDUsers.readUser(usuarioCadena);
-   			if (u != null && (getMD5(password).equals(u.getPassword()))){
+   			if (u != null && (Utilities.getMD5(password).equals(u.getPassword()))){
    				existe=true;
    	  			HttpSession sesion=request.getSession();
    				sesion.setAttribute("login", "True");

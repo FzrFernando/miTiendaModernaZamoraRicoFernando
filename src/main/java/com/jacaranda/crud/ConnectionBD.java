@@ -1,5 +1,6 @@
 package com.jacaranda.crud;
 
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

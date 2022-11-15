@@ -1,6 +1,7 @@
-package com.jacaranda.users;
+package com.jacaranda.model;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,8 +10,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import com.jacaranda.venta.Venta;
 
 //CREATE TABLE USUARIO(
 //		USUARIO VARCHAR(50) UNIQUE,
@@ -32,7 +31,7 @@ public class Users {
 	@Column(name = "NOMBRE_APELLIDO")
 	private String nombre_apellido;
 	@Column(name = "FECHA_NACIMIENTO")
-	private LocalDate fecha_nacimiento;
+	private LocalDateTime fecha_nacimiento;
 	@Column(name = "GENERO")
 	private boolean genero;
 	@Column(name = "ADMINISTRADOR")
@@ -40,7 +39,7 @@ public class Users {
 //	@OneToMany(mappedBy = "ID_VENTA", cascade = CascadeType.ALL, orphanRemoval = true)
 //	private List<Venta> listaVenta;
 
-	public Users(String usuario, String password, String nombre_apellido, LocalDate fecha_nacimiento, boolean genero,
+	public Users(String usuario, String password, String nombre_apellido, LocalDateTime fecha_nacimiento, boolean genero,
 			boolean administrador) {
 		super();
 		this.usuario = usuario;
@@ -80,11 +79,11 @@ public class Users {
 		this.nombre_apellido = nombre_apellido;
 	}
 
-	public LocalDate getFecha_nacimiento() {
+	public LocalDateTime getFecha_nacimiento() {
 		return fecha_nacimiento;
 	}
 
-	public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
+	public void setFecha_nacimiento(LocalDateTime fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
 	}
 
