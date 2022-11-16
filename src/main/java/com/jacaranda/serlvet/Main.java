@@ -38,7 +38,8 @@ public class Main extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("errorPage.html");
+//		response.sendRedirect("errorPage.jsp?error?=1");
+		doPost(request,response);
 	}
 
 	/**
@@ -72,27 +73,31 @@ public class Main extends HttpServlet {
 				+ "	</header>\n"
 				+ "	<div id=\"cuerpo\">");
 		
-		boolean existe=false;
-
-		String usuarioCadena= request.getParameter("usuario");
-		String password= request.getParameter("password");
-		boolean usuarioAdmin= false;
+		HttpSession sesion=request.getSession();
 		
+
+		String usuarioCadena= (String)sesion.getAttribute("usuario");
+		String password= (String)sesion.getAttribute("password");
 		Users u = CRUDUsers.readUser(usuarioCadena);
-   			if (u != null && (Utilities.getMD5(password).equals(u.getPassword()))){
-   				existe=true;
-   	  			HttpSession sesion=request.getSession();
-   				sesion.setAttribute("login", "True");
-   				sesion.setAttribute("usuario", usuarioCadena);
-   				usuarioAdmin=u.isAdministrador();
-   			}
-   		
-   		
-   		if (existe==true){//comprobar que entren datos
+		
+		if(u==null) {
+			usuarioCadena= request.getParameter("usuario");
+			password= request.getParameter("password");
+			u = CRUDUsers.readUser(usuarioCadena);
+			sesion.setAttribute("login", "True");
+			sesion.setAttribute("usuario", usuarioCadena);
+			sesion.setAttribute("password", password);
+			
+		}
+		boolean usuarioAdmin=u.isAdministrador();
+
+		
+   		if (u != null && (Utilities.getMD5(password).equals(u.getPassword()))){
+
    			if(usuarioAdmin) {
    				response.getWriter().append(
    						"<br>"+
-   						"<a href='annadirProducto'><button class='registerButton' id='bold'>A&ntildeadir Producto</button></a>"
+   						"<a href='annadirProducto.jsp'><button class='registerButton' id='bold'>A&ntildeadir Producto</button></a>"
    						);
    			}
    			
@@ -128,12 +133,12 @@ public class Main extends HttpServlet {
 //			response.getWriter().append("<a href='index.html'");
 			
 
-	
-	}
-   		else
-   			response.sendRedirect("errorPage.html");
-		
+   		}
 
+   		else
+   			response.sendRedirect("errorPage.jsp?error=2");
+		
+   
 	}
 
 }

@@ -64,6 +64,7 @@ public class CRUDCategoria {
 		return list;
 
 	}
+	
 
 	public static boolean updateCategoria(Categoria c, String nombre, String descripcion) {
 		Session session = ConnectionBD.getSession();

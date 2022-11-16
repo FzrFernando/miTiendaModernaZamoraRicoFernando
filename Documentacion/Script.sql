@@ -30,7 +30,7 @@ insert into cochesAdame.CATEGORIA (id_categoria, nombre, descripcion) values (6,
 insert into cochesAdame.CATEGORIA (id_categoria, nombre, descripcion) values (7, 'GMC', 'Smith''s fx unsp rad, subs for opn fx type I/2 w routn heal');
 insert into cochesAdame.CATEGORIA (id_categoria, nombre, descripcion) values (8, 'Chrysler', 'Fracture of fifth cervical vertebra');
 insert into cochesAdame.CATEGORIA (id_categoria, nombre, descripcion) values (9, 'Chevrolet', 'Vogt-Koyanagi syndrome, left eye');
-insert into cochesAdame.CATEGORIA (id_categoria, nombre, descripcion) values (10, 'Pontiac', 'Disorders of meninges, not elsewhere classified');
+insert into cochesAdame.CATEGORIA (id_categoria, nombre, descripcion) values (10, 'Poltec', 'Disorders of meninges, not elsewhere classified');
 
 	CREATE TABLE cochesAdame.PRODUCTO(
 	ID_PRODUCTO NUMERIC(5) UNIQUE,
