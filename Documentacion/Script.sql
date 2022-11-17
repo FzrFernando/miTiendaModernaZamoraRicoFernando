@@ -87,7 +87,7 @@ insert into cochesAdame.VENTA (id_venta, usuario, id_producto, cantidad, precio,
 insert into cochesAdame.VENTA (id_venta, usuario, id_producto, cantidad, precio, fecha_venta) values (4, 'alberto', 8, 58, 39.97, '2022-02-09');
 insert into cochesAdame.VENTA (id_venta, usuario, id_producto, cantidad, precio, fecha_venta) values (5, 'prueba', 25, 9, 6.74, '2022-09-20');
 
-
+COMMIT;
 
 
 

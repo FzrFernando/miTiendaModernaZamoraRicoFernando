@@ -6,8 +6,13 @@
 <meta charset="UTF-8">
 <title>Login</title>
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="shortcut icon" href="Images/logor.png"> 
 </head>
 <body>
+<%
+HttpSession sesion=request.getSession();
+sesion.invalidate();
+%>
 	<header id="main-header">
 
 		<a id="title" href="index.jsp">CAR</a>
@@ -17,8 +22,7 @@
 		<nav>
 			<ul>
 
-				<li style="border-bottom: 2px solid #f0f2f1;"><a
-					href="index.jsp">Log in</a></li>
+				<li style="border-bottom: 2px solid #f0f2f1;"><a>Log in</a></li>
 			</ul>
 		</nav>
 
@@ -46,7 +50,7 @@
 				¿No tienes cuenta?
 				<br><br>
 				<div id="registrarse">
-					<a href="register.jsp" class=""><button class="registerButton" type="button"><h2>Registrarse</h2></button></a>
+					<a href="register.jsp?noValido=0" class=""><button class="registerButton" type="button"><h2>Registrarse</h2></button></a>
 				</div>
 				
 

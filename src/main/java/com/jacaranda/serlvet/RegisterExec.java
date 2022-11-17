@@ -30,21 +30,21 @@ public class RegisterExec extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
-
-
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("errorPage.html");//poner con mensaje de error 404, o borrar el get directamente
-		//El rollback tiene que ir en el catch
-		//OPara las session, tendremos que hacer httpSession = request.getSession()
-		//Ahora preguntamos por el getSession() o hacemos el setSession(login, password)
-		
-		//Pondemos poner un contador 
-   
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.sendRedirect("errorPage.jsp?error=entrado por get");// poner con mensaje de error 404, o borrar el get
+																		// directamente
+		// El rollback tiene que ir en el catch
+		// OPara las session, tendremos que hacer httpSession = request.getSession()
+		// Ahora preguntamos por el getSession() o hacemos el setSession(login,
+		// password)
+
+		// Pondemos poner un contador
+
 	}
 
 	/**
@@ -54,49 +54,70 @@ public class RegisterExec extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		
-		
-		boolean existe=false;
-		String link = "index.jsp";
-		String usuarioCadena= request.getParameter("username");
-		for (int i = 0; i < usuarioCadena.length(); i++) {
-            if (usuarioCadena.charAt(i) == ' ') 
-            	response.sendRedirect("errorPage.html");
-        }
+		boolean existe = false;
+		String redirect = null;
+		int noValido = 0;
+		boolean error = false;
 
-		
-		
-		Users u = CRUDUsers.readUser(usuarioCadena);
-		if (u != null){
-				existe=true;
+		String usuarioCadena = request.getParameter("username");
+		if (usuarioCadena == null || usuarioCadena.isEmpty()) {
+			noValido = 3;// usuario es nuloo
+			error = true;
+		} else if (!error) {
+			for (int i = 0; i < usuarioCadena.length(); i++) {
+				if (usuarioCadena.charAt(i) == ' ')
+					noValido = 2;// usuario tiene espacios
+					error = true;
 			}
-		
-  
-   		
-   		if (existe==false){//comprobar que entren datos
-   			String password= request.getParameter("password");
-   			String nombreCompleto = request.getParameter("nombre_apellido");
-   			LocalDateTime date = LocalDateTime.of(LocalDate.parse(request.getParameter("fecha_nacimiento")), LocalTime.now());
-   			boolean sex = Boolean.parseBoolean(request.getParameter("sex"));
-  			Users newU = new Users(usuarioCadena,Utilities.getMD5(password),nombreCompleto,date,sex,false);
-  			CRUDUsers.addUser(newU);
-  			
-//  			HttpSession sesion=request.getSession();
-//			sesion.setAttribute("login", "True");
-//			sesion.setAttribute("usuario", usuarioCadena);
-			response.sendRedirect(link);
-//			response.getWriter().append("correcto");
-//			response.getWriter().append("<a href='index.html'");
-
 			
+			Users u = CRUDUsers.readUser(usuarioCadena);
+			if (u != null) {
+				noValido = 1;// usuario existe
+				error = true;
+			}
+		}
 
-	
-	}
-   		else
-   			response.sendRedirect("errorPage.html");
+		String password = request.getParameter("password");
+
+		if (password == null || password.isEmpty()) {
+			noValido = 4;// contraseña es nuloo
+			error = true;
+		}
+		String nombreCompleto = request.getParameter("nombre_apellido");
+
+		if (nombreCompleto == null || nombreCompleto.isEmpty()) {
+			noValido = 5;// nombre es nuloo
+			error = true;
+		}
 		
+		String dateString = request.getParameter("fecha_nacimiento");
+		
+		if (dateString == null || dateString.isEmpty()) {
+			noValido = 6;// fecha es nuloo
+			error = true;
+		}
+		
+		String sexString = request.getParameter("sex");
+		
+		if (sexString == null || sexString.isEmpty()) {
+			noValido = 7;// sexo es nuloo
+			error = true;
+		}
+		
+		if (error) {
+			redirect = "register.jsp?noValido=" + noValido;
+		} else {
+			boolean sex = Boolean.parseBoolean(sexString);
+
+			LocalDateTime date = LocalDateTime.of(LocalDate.parse(dateString),
+					LocalTime.now());
+			Users newU = new Users(usuarioCadena, Utilities.getMD5(password), nombreCompleto, date, sex, false);
+			CRUDUsers.addUser(newU);
+			redirect = "index.jsp";
+		}
+
+		response.sendRedirect(redirect);
+
 	}
 
-
-	
 }

@@ -21,4 +21,24 @@ public class Utilities {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public static boolean isNumeric(String cadena){
+		try {
+			Integer.parseInt(cadena);
+			return true;
+		} catch (NumberFormatException nfe){
+			return false;
+		}
+	}
+	
+	public static boolean isFloat(String cadena){
+		try {
+			Float.parseFloat(cadena);
+			return true;
+		} catch (NumberFormatException nfe){
+			return false;
+		}
+	}
+	
+
 }

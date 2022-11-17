@@ -214,47 +214,48 @@ input{
 
 /* ---------------------------------ESTILO PAGINA ERROR------------------------------------ */
 
-.error{
-	background-image: url('error.jpg.png');
- 	height: 100%;
- 	width: 100%;
- 	background-size:80%;
-	background-position: center;
-	background-repeat: no-repeat
+.fondoError{
+	 background-color: rgb(255, 255, 255, 0.95) ;
+    margin: 0 auto;
+    width: 24.95em; 
+    height: 12em;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%); 
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 9em;
 }
 
 .botonError {
 	text-decoration:none;
     width: 27.7em;
-    height: 60px;
-    background: #333;
+    height: 55px;
+    background: #76D045;
     color: white;
-    margin: 0 auto;
-    margin-top: 0;
+	margin: auto;
     text-align: center;
-    border-radius: 8px;
+    border-radius: 4px;
     border: 0px; 
 }
 
 .botonError:hover {
     width: 27.7em;
-    height: 60px;
-    background: rgb(37, 37, 37);
+    height: 55px;
+    background: #76D045;
+    transform: scale(1.01);
+    transition: 0.3s ease-in-out;
     color: white;
-    margin: 0 auto;
     margin-top: 0;
     text-align: center;
-    border-radius: 8px;
+    border-radius: 4px;
     border: 0px;
     cursor:pointer;  
 }
 
 .botonError:active {
     width: 27.7em;
-    height: 60px;
-    background: rgb(0, 0, 0);
+    height: 55px;
+    background: #6AC13B;
     color: white;
-    margin: 0 auto;
     margin-top: 0;
     text-align: center;
     border-radius: 8px;
@@ -268,7 +269,7 @@ input{
     /* opacity: 95%; */
     margin: 0 auto;
     width: 24.95em; 
-    height: 41em;
+    height: 42em;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%); 
     border-radius: 8px;
     text-align: center;
@@ -332,22 +333,32 @@ td{
 .tdId{
 	width: 5%;
 	height: 3.5em;
+	background-color: black;
+	color:white;
 }
 
 .tdPrice{
 	width: 10%;
+	background-color: black;
+	color:white;
 }
 
 .tdName{
 	width: 15%;
+	background-color: black;
+	color:white;
 }
 
 .tdDescription{
 	width: 50%;
+	background-color: black;
+	color:white;
 }
 
 .tdCategoria{
 	width: 15%;
+	background-color: black;
+	color:white;
 }
 
 
@@ -364,5 +375,17 @@ td{
 	
 } 
 
+/* ---------------------------------ESTILO AÑADIR PRODUCTO------------------------------------ */
 
+.annadirBorder{
+	background-color: rgb(255, 255, 255, 0.95) ;
+    /* opacity: 95%; */
+    margin: 0 auto;
+    width: 24.95em; 
+    height: 43.5em;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%); 
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 5em;
+}
 

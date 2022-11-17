@@ -1,0 +1,1025 @@
+{
+	"info": {
+		"_postman_id": "96e5f1b3-ef3d-4529-bc8f-c54b69e054fc",
+		"name": "Pruebas miTiendaAdame",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login Vacio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/Main?usuario&password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"Main"
+					],
+					"query": [
+						{
+							"key": "usuario",
+							"value": null
+						},
+						{
+							"key": "password",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Usuario Vacio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/Main?usuario=&password=alberto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"Main"
+					],
+					"query": [
+						{
+							"key": "usuario",
+							"value": ""
+						},
+						{
+							"key": "password",
+							"value": "alberto"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Password Vacia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/Main?usuario=alberto&password=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"Main"
+					],
+					"query": [
+						{
+							"key": "usuario",
+							"value": "alberto"
+						},
+						{
+							"key": "password",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Usuario Incorrecto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/Main?usuario=paco&password=paco",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"Main"
+					],
+					"query": [
+						{
+							"key": "usuario",
+							"value": "paco"
+						},
+						{
+							"key": "password",
+							"value": "paco"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Password Incorrecta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/Main?usuario=alberto&password=paco",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"Main"
+					],
+					"query": [
+						{
+							"key": "usuario",
+							"value": "alberto"
+						},
+						{
+							"key": "password",
+							"value": "paco"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Válido",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/Main?usuario=alberto&password=alberto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"Main"
+					],
+					"query": [
+						{
+							"key": "usuario",
+							"value": "alberto"
+						},
+						{
+							"key": "password",
+							"value": "alberto"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Entrar Main Método Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/Main?usuario=alberto&password=alberto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"Main"
+					],
+					"query": [
+						{
+							"key": "usuario",
+							"value": "alberto"
+						},
+						{
+							"key": "password",
+							"value": "alberto"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Entrar Main Sin Administrador",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/Main?usuario=prueba&password=prueba",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"Main"
+					],
+					"query": [
+						{
+							"key": "usuario",
+							"value": "prueba"
+						},
+						{
+							"key": "password",
+							"value": "prueba"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Entrar Main Como Administrador Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/Main?usuario=alberto&password=alberto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"Main"
+					],
+					"query": [
+						{
+							"key": "usuario",
+							"value": "alberto"
+						},
+						{
+							"key": "password",
+							"value": "alberto"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Añadir Producto Sin Id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/AnnadirExec?id=&nombre=nombre&precio=50&descripcion=descripcion&categoria=Pontiac",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"AnnadirExec"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": ""
+						},
+						{
+							"key": "nombre",
+							"value": "nombre"
+						},
+						{
+							"key": "precio",
+							"value": "50"
+						},
+						{
+							"key": "descripcion",
+							"value": "descripcion"
+						},
+						{
+							"key": "categoria",
+							"value": "Pontiac"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Añadir Producto Con ID existente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/AnnadirExec?id=1&nombre=nombre&precio=50&descripcion=descripcion&categoria=Pontiac",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"AnnadirExec"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						},
+						{
+							"key": "nombre",
+							"value": "nombre"
+						},
+						{
+							"key": "precio",
+							"value": "50"
+						},
+						{
+							"key": "descripcion",
+							"value": "descripcion"
+						},
+						{
+							"key": "categoria",
+							"value": "Pontiac"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Añadir Producto Con ID de una palabra",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/AnnadirExec?id=palabra&nombre=nombre&precio=50&descripcion=descripcion&categoria=Pontiac",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"AnnadirExec"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "palabra"
+						},
+						{
+							"key": "nombre",
+							"value": "nombre"
+						},
+						{
+							"key": "precio",
+							"value": "50"
+						},
+						{
+							"key": "descripcion",
+							"value": "descripcion"
+						},
+						{
+							"key": "categoria",
+							"value": "Pontiac"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Añadir Producto Sin Nombre",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/AnnadirExec?id=250&nombre=&precio=50&descripcion=descripcion&categoria=Pontiac",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"AnnadirExec"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "250"
+						},
+						{
+							"key": "nombre",
+							"value": ""
+						},
+						{
+							"key": "precio",
+							"value": "50"
+						},
+						{
+							"key": "descripcion",
+							"value": "descripcion"
+						},
+						{
+							"key": "categoria",
+							"value": "Pontiac"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Añadir Producto Sin Precio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/AnnadirExec?id=250&nombre=nombre&precio=&descripcion=descripcion&categoria=Pontiac",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"AnnadirExec"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "250"
+						},
+						{
+							"key": "nombre",
+							"value": "nombre"
+						},
+						{
+							"key": "precio",
+							"value": ""
+						},
+						{
+							"key": "descripcion",
+							"value": "descripcion"
+						},
+						{
+							"key": "categoria",
+							"value": "Pontiac"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Añadir Producto Con Precio de una palabra",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/AnnadirExec?id=250&nombre=nombre&precio=palabra&descripcion=descripcion&categoria=Pontiac",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"AnnadirExec"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "250"
+						},
+						{
+							"key": "nombre",
+							"value": "nombre"
+						},
+						{
+							"key": "precio",
+							"value": "palabra"
+						},
+						{
+							"key": "descripcion",
+							"value": "descripcion"
+						},
+						{
+							"key": "categoria",
+							"value": "Pontiac"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Añadir Producto Sin Descripcion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/AnnadirExec?id=250&nombre=nombre&precio=25&descripcion=&categoria=Pontiac",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"AnnadirExec"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "250"
+						},
+						{
+							"key": "nombre",
+							"value": "nombre"
+						},
+						{
+							"key": "precio",
+							"value": "25"
+						},
+						{
+							"key": "descripcion",
+							"value": ""
+						},
+						{
+							"key": "categoria",
+							"value": "Pontiac"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Añadir Producto Sin Categoria",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/AnnadirExec?id=250&nombre=nombre&precio=25&descripcion=descripcion&categoria=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"AnnadirExec"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "250"
+						},
+						{
+							"key": "nombre",
+							"value": "nombre"
+						},
+						{
+							"key": "precio",
+							"value": "25"
+						},
+						{
+							"key": "descripcion",
+							"value": "descripcion"
+						},
+						{
+							"key": "categoria",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Añadir Producto Válido",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/AnnadirExec?id=144&nombre=nombre&precio=25&descripcion=descripcion&categoria=Pontiac",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"AnnadirExec"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "144"
+						},
+						{
+							"key": "nombre",
+							"value": "nombre"
+						},
+						{
+							"key": "precio",
+							"value": "25"
+						},
+						{
+							"key": "descripcion",
+							"value": "descripcion"
+						},
+						{
+							"key": "categoria",
+							"value": "Pontiac"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrarse Sin Usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/RegisterExec?noValido=0&username=&nombre_apellido=nombre&fecha_nacimiento=2022-11-30&sex=true&password=password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"RegisterExec"
+					],
+					"query": [
+						{
+							"key": "noValido",
+							"value": "0"
+						},
+						{
+							"key": "username",
+							"value": ""
+						},
+						{
+							"key": "nombre_apellido",
+							"value": "nombre"
+						},
+						{
+							"key": "fecha_nacimiento",
+							"value": "2022-11-30"
+						},
+						{
+							"key": "sex",
+							"value": "true"
+						},
+						{
+							"key": "password",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrarse Con Usuario existente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/RegisterExec?noValido=0&username=alberto&nombre_apellido=nombre&fecha_nacimiento=08/03/1999&sex=true&password=password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"RegisterExec"
+					],
+					"query": [
+						{
+							"key": "noValido",
+							"value": "0"
+						},
+						{
+							"key": "username",
+							"value": "alberto"
+						},
+						{
+							"key": "nombre_apellido",
+							"value": "nombre"
+						},
+						{
+							"key": "fecha_nacimiento",
+							"value": "08/03/1999"
+						},
+						{
+							"key": "sex",
+							"value": "true"
+						},
+						{
+							"key": "password",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrarse Con Usuario con espacio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/RegisterExec?noValido=0&username=alberto adame&nombre_apellido=nombre&fecha_nacimiento=08/03/1999&sex=true&password=password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"RegisterExec"
+					],
+					"query": [
+						{
+							"key": "noValido",
+							"value": "0"
+						},
+						{
+							"key": "username",
+							"value": "alberto adame"
+						},
+						{
+							"key": "nombre_apellido",
+							"value": "nombre"
+						},
+						{
+							"key": "fecha_nacimiento",
+							"value": "08/03/1999"
+						},
+						{
+							"key": "sex",
+							"value": "true"
+						},
+						{
+							"key": "password",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrarse Sin Fecha",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/RegisterExec?noValido=0&username=pepito&nombre_apellido=alberto&fecha_nacimiento=&sex=true&password=password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"RegisterExec"
+					],
+					"query": [
+						{
+							"key": "noValido",
+							"value": "0"
+						},
+						{
+							"key": "username",
+							"value": "pepito"
+						},
+						{
+							"key": "nombre_apellido",
+							"value": "alberto"
+						},
+						{
+							"key": "fecha_nacimiento",
+							"value": ""
+						},
+						{
+							"key": "sex",
+							"value": "true"
+						},
+						{
+							"key": "password",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrarse Sin nombre",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/RegisterExec?noValido=0&username=pepito&nombre_apellido=&fecha_nacimiento=08/03/1999&sex=true&password=password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"RegisterExec"
+					],
+					"query": [
+						{
+							"key": "noValido",
+							"value": "0"
+						},
+						{
+							"key": "username",
+							"value": "pepito"
+						},
+						{
+							"key": "nombre_apellido",
+							"value": ""
+						},
+						{
+							"key": "fecha_nacimiento",
+							"value": "08/03/1999"
+						},
+						{
+							"key": "sex",
+							"value": "true"
+						},
+						{
+							"key": "password",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrarse Sin Genero",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/RegisterExec?noValido=0&username=pepito&nombre_apellido=nombre&fecha_nacimiento=08/03/1999&sex=&password=password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"RegisterExec"
+					],
+					"query": [
+						{
+							"key": "noValido",
+							"value": "0"
+						},
+						{
+							"key": "username",
+							"value": "pepito"
+						},
+						{
+							"key": "nombre_apellido",
+							"value": "nombre"
+						},
+						{
+							"key": "fecha_nacimiento",
+							"value": "08/03/1999"
+						},
+						{
+							"key": "sex",
+							"value": ""
+						},
+						{
+							"key": "password",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrarse Sin Password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/RegisterExec?noValido=0&username=pepito&nombre_apellido=nombre&fecha_nacimiento=08/03/1999&sex=true&password=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"RegisterExec"
+					],
+					"query": [
+						{
+							"key": "noValido",
+							"value": "0"
+						},
+						{
+							"key": "username",
+							"value": "pepito"
+						},
+						{
+							"key": "nombre_apellido",
+							"value": "nombre"
+						},
+						{
+							"key": "fecha_nacimiento",
+							"value": "08/03/1999"
+						},
+						{
+							"key": "sex",
+							"value": "true"
+						},
+						{
+							"key": "password",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrarse Válido",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/miTiendaAdame/RegisterExec?noValido=0&username=pepito&nombre_apellido=nombre&fecha_nacimiento=08/03/1999&sex=true&password=password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"miTiendaAdame",
+						"RegisterExec"
+					],
+					"query": [
+						{
+							"key": "noValido",
+							"value": "0"
+						},
+						{
+							"key": "username",
+							"value": "pepito"
+						},
+						{
+							"key": "nombre_apellido",
+							"value": "nombre"
+						},
+						{
+							"key": "fecha_nacimiento",
+							"value": "08/03/1999"
+						},
+						{
+							"key": "sex",
+							"value": "true"
+						},
+						{
+							"key": "password",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

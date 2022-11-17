@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Añadir Producto</title>
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="shortcut icon" href="Images/logor.png"> 
 </head>
 <body>
 <%
@@ -26,15 +27,14 @@ else{
 	<main>
 		<header id="main-header">
 
-			<a id="title" href="index.jsp">CAR</a> <a id="titleBlue"
-				href="index.jsp">Buy</a> <a id="logo-header" href="index.jsp"><img
+			<a id="title" href="Main">CAR</a> <a id="titleBlue"
+				href="Main">Buy</a> <a id="logo-header" href="Main"><img
 				src="Images/logor.png"></a>
 
 			<nav>
 				<ul>
 
-					<li style="border-bottom: 2px solid #f0f2f1;"><a
-						href="index.jsp">Añadir Producto</a></li>
+					<li style="border-bottom: 2px solid #f0f2f1;"><a>Añadir Producto</a></li>
 					<li><a
 						href="index.jsp"><%=bienvenida %></a></li>
 				</ul>
@@ -42,7 +42,7 @@ else{
 		</header>
 		<div id="cuerpo">
 			<form action="AnnadirExec" method="post" id="form">
-				<div class="registerBorder">
+				<div class="annadirBorder">
 					<br>
 					<h1>Añadir Producto</h1>
 					<div class="introducir">
@@ -50,16 +50,25 @@ else{
 							name="id" id="username" placeholder="Id" class="registerInput"
 							required>
 						<p>
-							<small id="warnings"></small>
+							<%int error=Integer.parseInt(request.getParameter("noValido")); %>
+							<% if (error==1){
+							%><small style=color:red;>Este ID ya existe</small><br><%
+							}else if(error==2){
+							%><small style=color:red;>Este ID no es un número</small><br>
+							<%}else if(error==8){
+							%><small style=color:red;>El ID no puede estar vacio</small><br>
+							<%}%>
 						</p>
 					</div>
 
 					<div class="introducir">
 						<label for="Nombre"> Nombre </label><br> <input type="text"
 							name="nombre" id="nombre_apellido" placeholder="Nombre"
-							autocomplete="off" class="registerInput" required>
+							autocomplete="off" class="registerInput">
 						<p>
-							<small id="warnings"></small>
+						<% if (error==3){
+							%><small style=color:red;>El nombre no puede estar vacio</small><br><%
+							}%>
 						</p>
 					</div>
 
@@ -68,7 +77,11 @@ else{
 							name="precio" id="fecha_nacimiento" placeholder="Precio"
 							autocomplete="off" class="registerInput" required>
 						<p>
-							<small id="warnings"></small>
+							<% if (error==4){
+							%><small style=color:red;>El precio no es un caracter correcto</small><br><%
+							}else if(error==5){
+							%><small style=color:red;>El precio no puede estar vacio</small><br>
+							<%}%>
 						</p>
 					</div>
 
@@ -76,9 +89,11 @@ else{
 						<label for="Descripcion"> Descripcion </label><br> <input
 							type="text" name="descripcion" id="password"
 							placeholder="Descripcion" autocomplete="off"
-							class="registerInput" required>
+							class="registerInput">
 						<p>
-							<small id="warnings"></small>
+							<% if (error==6){
+							%><small style=color:red;>La descripcion no puede estar vacia</small><br><%
+							}%>
 						</p>
 					</div>
 
@@ -95,6 +110,9 @@ else{
 							}
 							%>
 						</select>
+						<% if (error==7){
+							%><br><small style=color:red;>La categoria no puede estar vacia</small><br><%
+							}%>
 						<p>
 							<small id="warnings"></small>
 						</p>

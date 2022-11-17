@@ -1,22 +1,17 @@
 package com.jacaranda.serlvet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.jacaranda.crud.CRUDCategoria;
 import com.jacaranda.crud.CRUDProducto;
-import com.jacaranda.crud.CRUDUsers;
 import com.jacaranda.crud.Utilities;
-import com.jacaranda.model.Categoria;
+//import com.jacaranda.crud.Utilities;
 import com.jacaranda.model.Producto;
-import com.jacaranda.model.Users;
 
 /**
  * Servlet implementation class AnnadirExec
@@ -37,7 +32,7 @@ public class AnnadirExec extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request,response);
+		response.sendRedirect("errorPage.jsp?error=entrado por get");
 		
 	}
 
@@ -53,48 +48,101 @@ public class AnnadirExec extends HttpServlet {
 				+ "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n"
 				+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
 				+ "    <link rel=\"stylesheet\" href=\"style.css\">\n"
-				+ "    <title>Añadiendo...</title>\n"
+				+ "    <title>Annadiendo...</title>\n"
 				+ "</head>\n"
 				+ "<body>");
 
+		boolean error=false;
+		int noValid=0;
+		int id=0;
+		float precio=0;
+		int categoria=0;
+		String redirect=null;
 		
-		int id=Integer.parseInt(request.getParameter("id"));
-		String nombre=request.getParameter("nombre");
-		float precio=Float.parseFloat(request.getParameter("precio"));
-		String descripcion=request.getParameter("descripcion");
-		int categoria=Integer.parseInt(request.getParameter("categoria"));
-		Boolean entrar=true;
 		
-		Producto pr = CRUDProducto.readProducto(id);
-		
-		if(pr != null) {
-			entrar=false;
+		String idString=request.getParameter("id");
+
+		if(idString==null || idString.isEmpty()) { 
+			error=true;
+			noValid=8;
+
 		}
 		
-		if(entrar==false){
-			response.sendRedirect("annadirProducto.jsp?error=1");
-		}
-		else{			 
-			 Producto p=new Producto(id,nombre,descripcion,precio, categoria);
-			 CRUDProducto.addProducto(p);
-			 
-			 String redirect="Main";
-			 response.sendRedirect(redirect);
-		}
-
-   			
-   			response.getWriter().append("</body>");
-   			
-
-  			
-
-
-//			response.getWriter().append("correcto");
-//			response.getWriter().append("<a href='index.html'");
+		else if(!Utilities.isNumeric(idString)) { 
+			error=true;
+			noValid=2;
 			
+		}
+		
+		if(!error) {
+			id=Integer.parseInt(idString);
+			Producto pr = CRUDProducto.readProducto(id);
+			if(pr != null ) {
+				error=true;
+				noValid=1;
+			}
+		}
+		
+		
+		String nombre=request.getParameter("nombre");
+		if(nombre== null || nombre.isEmpty()) { 
+			error=true;
+			noValid=3;
+		
+		}
+		String precioString=request.getParameter("precio");	
+		
+		if(precioString== null || precioString.isEmpty()) {
+			error=true;
+			noValid=5;
+			}
+		
+		else if(!Utilities.isFloat(precioString)) { 
+			error=true;
+			noValid=4;
+		}
 
+		 
+		
 	
-	}
+		String descripcion=request.getParameter("descripcion");
+		if(descripcion== null || descripcion.isEmpty()) { 
+			error=true;
+			noValid=6;
+		
+		}
+		String categoriaString=request.getParameter("categoria");
+		
+		if(categoriaString== null || categoriaString.isEmpty()) { 
+			error=true;
+			noValid=7;
+		
+		}
+		if(!error) {
+			
+			precio=Float.parseFloat(precioString);
+			categoria=Integer.parseInt(categoriaString);
+			
+			
+		}
+		
+		if(error) {
+			 redirect="annadirProducto.jsp?noValido="+noValid;
+		}
+		else {
+			Producto p=new Producto(id,nombre,descripcion,precio, categoria);
+			CRUDProducto.addProducto(p);
+			 
+			 redirect="Main";
+ 
+		}
+		response.sendRedirect(redirect);
+		response.getWriter().append("</body>");
+			 
+		
+   			
 
+
+	}
 
 }
