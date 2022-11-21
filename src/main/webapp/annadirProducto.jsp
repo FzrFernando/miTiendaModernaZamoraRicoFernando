@@ -117,6 +117,18 @@ else{
 							<small id="warnings"></small>
 						</p>
 					</div>
+					
+					<div class="introducir">
+						<label for="Stock"> Stock </label><br> 
+						<input type="number"
+							name="stock" id="stock" placeholder="Cantidad de productos"
+							autocomplete="off" class="registerInput" required value="0">
+						<p>
+							<% if (error==9){
+							%><small style=color:red;>El stock no es un caracter correcto</small><br><%
+							}%>
+						</p>
+					</div>
 
 					<button type="submit" class="registerButton">Añadir</button>
 					<br>

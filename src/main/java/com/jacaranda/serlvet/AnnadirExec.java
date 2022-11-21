@@ -57,6 +57,7 @@ public class AnnadirExec extends HttpServlet {
 		int id=0;
 		float precio=0;
 		int categoria=0;
+		int stock = 0;
 		String redirect=null;
 		
 		
@@ -111,6 +112,16 @@ public class AnnadirExec extends HttpServlet {
 			noValid=6;
 		
 		}
+		
+		String stockString = request.getParameter("stock");
+		if(stockString == null || stockString.isEmpty()) {
+			stockString = "0";
+		}
+		else if(!Utilities.isNumeric(stockString) || Integer.parseInt(stockString)<0) {
+			error=true;
+			noValid=9;
+		}
+				
 		String categoriaString=request.getParameter("categoria");
 		
 		if(categoriaString== null || categoriaString.isEmpty()) { 
@@ -122,6 +133,7 @@ public class AnnadirExec extends HttpServlet {
 			
 			precio=Float.parseFloat(precioString);
 			categoria=Integer.parseInt(categoriaString);
+			stock=Integer.parseInt(stockString);
 			
 			
 		}
@@ -130,7 +142,7 @@ public class AnnadirExec extends HttpServlet {
 			 redirect="annadirProducto.jsp?noValido="+noValid;
 		}
 		else {
-			Producto p=new Producto(id,nombre,descripcion,precio, categoria);
+			Producto p=new Producto(id,nombre,descripcion,precio, categoria, stock);
 			CRUDProducto.addProducto(p);
 			 
 			 redirect="Main";

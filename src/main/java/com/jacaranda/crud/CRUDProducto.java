@@ -1,6 +1,5 @@
 package com.jacaranda.crud;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,7 +74,7 @@ public class CRUDProducto {
 //			CONSTRAINT FK_PRODUCTO FOREIGN KEY (ID_CATEGORIA) REFERENCES CATEGORIA(ID_CATEGORIA)
 //			);
 	
-	public static boolean updateProducto(Producto p, String nombre, String descripcion, float price, int id_categoria) {
+	public static boolean updateProducto(Producto p, String nombre, String descripcion, float price, int id_categoria, int stock) {
 		Session session = ConnectionBD.getSession();
 		boolean resultado = false;
 		try {
@@ -85,6 +84,7 @@ public class CRUDProducto {
 			pNew.setDescripcion(descripcion);
 			pNew.setPrecio(price);
 			pNew.setId_categoria(id_categoria);
+			pNew.setStock(stock);
 			
 			session.getTransaction().begin();
 			session.saveOrUpdate(pNew);

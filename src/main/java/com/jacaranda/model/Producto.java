@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 //		DESCRIPCION VARCHAR(150),
 //		PRECIO FLOAT(5,2),
 //		ID_CATEGORIA NUMERIC(5),
+//		STOCK NUMERIC(5),
 //		CONSTRAINT PK_PRODUCTO PRIMARY KEY(ID_PRODUCTO),
 //		CONSTRAINT FK_PRODUCTO FOREIGN KEY (ID_CATEGORIA) REFERENCES CATEGORIA(ID_CATEGORIA)
 //		);
@@ -34,18 +35,21 @@ public class Producto {
 	private float precio;
 	@Column (name="ID_CATEGORIA")
 	private int id_categoria;
+	@Column (name="STOCK")
+	private int stock;
 //	@OneToMany(mappedBy = "ID_VENTA", cascade = CascadeType.ALL, orphanRemoval = true)
 //	private List<Venta> listaVenta;
 	
 
 
-	public Producto(int id_producto, String nombre, String descripcion, float precio, int id_categoria) {
+	public Producto(int id_producto, String nombre, String descripcion, float precio, int id_categoria, int stock) {
 		super();
 		this.id_producto = id_producto;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.id_categoria = id_categoria;
+		this.stock = stock;
 	}
 
 
@@ -115,6 +119,8 @@ public class Producto {
 	}
 
 	
+	
+	
 //	public List<Venta> getListaVenta() {
 //		return listaVenta;
 //	}
@@ -123,6 +129,16 @@ public class Producto {
 //	public void setListaVenta(List<Venta> listaVenta) {
 //		this.listaVenta = listaVenta;
 //	}
+
+
+	public int isStock() {
+		return stock;
+	}
+
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
 
 
 	@Override
@@ -148,7 +164,7 @@ public class Producto {
 	@Override
 	public String toString() {
 		return "Producto [id_producto=" + id_producto + ", nombre=" + nombre + ", descripcion=" + descripcion
-				+ ", precio=" + precio + ", id_categoria=" + id_categoria + ", listaVenta=]";// + listaVenta + "]";
+				+ ", precio=" + precio + ", id_categoria=" + id_categoria + ", stock*" + stock + "]";// + listaVenta + "]";
 	}
 
 
