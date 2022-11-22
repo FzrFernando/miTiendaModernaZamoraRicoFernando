@@ -119,10 +119,10 @@ public class Main extends HttpServlet {
 				+ "		</nav>\n" + "\n" + "	</header>\n" + "	<div id=\"cuerpo\">");
 
 
-			if (usuarioAdmin) {
-				response.getWriter().append("<br>"
-						+ "<a href='annadirProducto.jsp?noValido=0'><button class='registerButton' id='bold'>A&ntildeadir Producto</button></a>");
-			}
+				if (usuarioAdmin) {
+					response.getWriter().append("<br>"
+							+ "<a href='annadirProducto.jsp?noValido=0'><button class='registerButton' id='bold'>A&ntildeadir Producto</button></a> <br>");
+				}
 
 			List<Producto> listaProducto = CRUDProducto.loadList();
 
@@ -134,23 +134,28 @@ public class Main extends HttpServlet {
 //							+ "            <td class='tdDescription' id='bold'>Descripcion</td>\n"
 //							+ "            <td class='tdCategoria' id='bold'>Categoria</td>"
 //							+ "			   <td class='tdStock' id='bold'>Stock</td>" + "				</tr>");
-			response.getWriter().append("<div class=\\\"grid-container\\\">");
+			
+			response.getWriter().append(" <br> <div class=grid-container>");
 			for (Producto p : listaProducto) {
 				Categoria c = CRUDCategoria.readCategoria(p.getId_categoria());
 				
 				
 				
-				response.getWriter().append("<div class=\"card\">\n"
-						+ "           			 <div class=\"photo\">\n"
-						+ "               			 <img src=\"Images/Ford3.png\" alt=\"\" srcset=\"\">\n"
-						+ "            			</div>\n"
-						+ "           			 <div class=\"description\">\n"
-						+ "               			 <a class=\"titulitos\">"+ p.getNombre()+ "</a>  <br>\n"+ p.getPrecio()
-						+ "               			 <br> <a class=\"descripcion\"> " + p.getDescripcion() +"</a> "
-						+ "               			  Categoria	:  " + p.getId_categoria() +"<br>\n"
-						+                			  p.getStock() + " En Stock<br>\n"
-						+ "          			  </div>\n"
-						+ "       			 </div> \n");
+				response.getWriter().append(" <div class=\"card\">\n"
+						+ "            <a href='CarritoCompra'> <div class=\"photo\">\n"
+						+ "                 <img src=\"Images/Ford3.png\">\n"
+						+ "            </div>\n"
+						+ "\n"
+						+ "            <div class=\"description\">\n"
+						+ "                <a class=\"titulitos\">"+ p.getNombre() +"</a>  <br>\n"
+						+                  p.getPrecio() + "$<br>\n"
+						+ "                <a class=\"descripcion\">" + p.getDescripcion() +"</a>  <br>\n"
+						+ "                <br>\n"
+						+ "                Categoria	:  "+ c.getNombre() + "<br>\n"
+						+                  + p.getStock()+ " En Stock<br>\n"
+						+ "                			\n" 
+						+ "            </div> </a>\n"
+						+ "        </div> ");
 				
 //				response.getWriter().append("<tr>");
 //				response.getWriter().append("<td>" + p.getId() + "</td>");
@@ -166,8 +171,6 @@ public class Main extends HttpServlet {
 			response.getWriter().append("</body>");
 			response.getWriter().append("</html>");
 
-//			response.getWriter().append("correcto");
-//			response.getWriter().append("<a href='index.html'");
 
 		}
 		else {
