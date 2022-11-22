@@ -131,7 +131,7 @@ public class Producto {
 //	}
 
 
-	public int isStock() {
+	public int getStock() {
 		return stock;
 	}
 

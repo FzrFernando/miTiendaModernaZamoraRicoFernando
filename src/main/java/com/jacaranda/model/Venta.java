@@ -6,43 +6,49 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
 
 //CREATE TABLE VENTA(
-//		ID_VENTA NUMERIC(5),
 //		USUARIO VARCHAR(50),
 //		ID_PRODUCTO NUMERIC(5),
 //		CANTIDAD NUMERIC(10),
 //		PRECIO FLOAT(5,2),
 //		FECHA_VENTA DATE,
-//		CONSTRAINT PK_VENTA PRIMARY KEY(ID_VENTA),
+//		CONSTRAINT PK_VENTA PRIMARY KEY(USUARIO,ID_PRODUCTO,FECHA_VENTA),
 //		CONSTRAINT FK_VENTA_PRODUCTO FOREIGN KEY (ID_PRODUCTO) REFERENCES PRODUCTO(ID_PRODUCTO),
 //		CONSTRAINT FK_VENTA_USUARIO FOREIGN KEY (USUARIO) REFERENCES USUARIO(USUARIO)
 //		);
 
 @Entity(name = "VENTA")
+@IdClass(Venta_Id.class)
 public class Venta {
 	@Id
-	@Column(name = "ID_VENTA")
-	private int id_venta;
-	@Column(name = "USUARIO")
-	private String usuario;
-	@Column(name = "ID_PRODUCTO")
-	private int id_producto;
+	@ManyToOne
+	@JoinColumn(name = "usuario")
+	private Users usuario;
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "id_producto")
+	private Producto id_producto;
+	@Id
+	@Column(name = "fecha_venta")
+	private LocalDate fecha_venta;
 	@Column(name = "CANTIDAD")
 	private int cantidad;
 	@Column(name = "PRECIO")
 	private float precio;
-	@Column(name = "FECHA_VENTA")
-	private LocalDate fecha_venta;
 	
-	public Venta(int id_venta, String usuario, int id_producto, int cantidad, float precio, LocalDate fecha_venta) {
+	public Venta(Users usuario, Producto id_producto, LocalDate fecha_venta, int cantidad, float precio) {
 		super();
-		this.id_venta = id_venta;
 		this.usuario = usuario;
 		this.id_producto = id_producto;
+		this.fecha_venta = fecha_venta;
 		this.cantidad = cantidad;
 		this.precio = precio;
-		this.fecha_venta = fecha_venta;
 	}
 
 	public Venta() {
@@ -50,28 +56,28 @@ public class Venta {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getId_venta() {
-		return id_venta;
-	}
-
-	public void setId_venta(int id_venta) {
-		this.id_venta = id_venta;
-	}
-
-	public String getUsuario() {
+	public Users getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(String usuario) {
+	public void setUsuario(Users usuario) {
 		this.usuario = usuario;
 	}
 
-	public int getId_producto() {
+	public Producto getId_producto() {
 		return id_producto;
 	}
 
-	public void setId_producto(int id_producto) {
+	public void setId_producto(Producto id_producto) {
 		this.id_producto = id_producto;
+	}
+
+	public LocalDate getFecha_venta() {
+		return fecha_venta;
+	}
+
+	public void setFecha_venta(LocalDate fecha_venta) {
+		this.fecha_venta = fecha_venta;
 	}
 
 	public int getCantidad() {
@@ -90,17 +96,9 @@ public class Venta {
 		this.precio = precio;
 	}
 
-	public LocalDate getFecha_venta() {
-		return fecha_venta;
-	}
-
-	public void setFecha_venta(LocalDate fecha_venta) {
-		this.fecha_venta = fecha_venta;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(id_venta);
+		return Objects.hash(fecha_venta, id_producto, usuario);
 	}
 
 	@Override
@@ -112,14 +110,18 @@ public class Venta {
 		if (getClass() != obj.getClass())
 			return false;
 		Venta other = (Venta) obj;
-		return id_venta == other.id_venta;
+		return Objects.equals(fecha_venta, other.fecha_venta) && Objects.equals(id_producto, other.id_producto)
+				&& Objects.equals(usuario, other.usuario);
 	}
 
 	@Override
 	public String toString() {
-		return "Venta [id_venta=" + id_venta + ", usuario=" + usuario + ", id_producto=" + id_producto + ", cantidad="
-				+ cantidad + ", precio=" + precio + ", fecha_venta=" + fecha_venta + "]";
+		return "Venta [usuario=" + usuario + ", id_producto=" + id_producto + ", fecha_venta=" + fecha_venta
+				+ ", cantidad=" + cantidad + ", precio=" + precio + "]";
 	}
+	
+	
+	
 	
 	
 	

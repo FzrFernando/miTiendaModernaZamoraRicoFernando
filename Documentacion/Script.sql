@@ -44,7 +44,7 @@ insert into cochesAdame.CATEGORIA (id_categoria, nombre, descripcion) values (10
 	);
 
 insert into cochesAdame.PRODUCTO (id_producto, nombre, descripcion, precio, id_categoria, stock) values (1, 'Avenger', 'Burn of unsp deg mult sites of right ankle and foot, subs', 38.82, 1, 10);
-insert into cochesAdame.PRODUCTO (id_producto, nombre, descripcion, precio, id_categoria, stock) values (2, 'Explorer', 'Unspecified dislocation of unspecified toe(s)', 3.26, 2);
+insert into cochesAdame.PRODUCTO (id_producto, nombre, descripcion, precio, id_categoria, stock) values (2, 'Explorer', 'Unspecified dislocation of unspecified toe(s)', 3.26, 2, 10);
 insert into cochesAdame.PRODUCTO (id_producto, nombre, descripcion, precio, id_categoria, stock) values (3, 'Accord Crosstour', 'Asphyxiation due to plastic bag, assault, subs encntr', 21.81, 3, 10);
 insert into cochesAdame.PRODUCTO (id_producto, nombre, descripcion, precio, id_categoria, stock) values (4, 'S90', 'Toxic effect of contact w oth venomous plant, undet, sequela', 98.25, 4, 10);
 insert into cochesAdame.PRODUCTO (id_producto, nombre, descripcion, precio, id_categoria, stock) values (5, 'H1', 'Oth injury of dorsal vein of unspecified foot, init encntr', 84.15, 5, 10);
@@ -70,25 +70,22 @@ insert into cochesAdame.PRODUCTO (id_producto, nombre, descripcion, precio, id_c
 insert into cochesAdame.PRODUCTO (id_producto, nombre, descripcion, precio, id_categoria, stock) values (25, 'Parejo', 'Actvty, oth w oth sports & athletics played as a team or grp', 74.27, 5, 10);
 
 	CREATE TABLE cochesAdame.VENTA(
-	ID_VENTA NUMERIC(5),
 	USUARIO VARCHAR(50),
 	ID_PRODUCTO NUMERIC(5),
 	CANTIDAD NUMERIC(10),
 	PRECIO FLOAT(5,2),
 	FECHA_VENTA DATE,
-	CONSTRAINT PK_VENTA PRIMARY KEY(ID_VENTA),
+	CONSTRAINT PK_VENTA PRIMARY KEY(USUARIO, ID_PRODUCTO, FECHA_VENTA),
 	CONSTRAINT FK_VENTA_PRODUCTO FOREIGN KEY (ID_PRODUCTO) REFERENCES PRODUCTO(ID_PRODUCTO),
 	CONSTRAINT FK_VENTA_USUARIO FOREIGN KEY (USUARIO) REFERENCES USUARIO(USUARIO)
 	);
 
 
-insert into cochesAdame.VENTA (id_venta, usuario, id_producto, cantidad, precio, fecha_venta) values (1, 'alberto', 22, 31, 19.88, '2022-06-02');
-insert into cochesAdame.VENTA (id_venta, usuario, id_producto, cantidad, precio, fecha_venta) values (2, 'alberto', 10, 12, 37.72, '2022-01-18');
-insert into cochesAdame.VENTA (id_venta, usuario, id_producto, cantidad, precio, fecha_venta) values (3, 'prueba', 5, 69, 31.07, '2022-01-07');
-insert into cochesAdame.VENTA (id_venta, usuario, id_producto, cantidad, precio, fecha_venta) values (4, 'alberto', 8, 58, 39.97, '2022-02-09');
-insert into cochesAdame.VENTA (id_venta, usuario, id_producto, cantidad, precio, fecha_venta) values (5, 'prueba', 25, 9, 6.74, '2022-09-20');
-
-COMMIT;
+insert into cochesAdame.VENTA (usuario, id_producto, cantidad, precio, fecha_venta) values ('alberto', 22, 31, 19.88, '2022-06-02');
+insert into cochesAdame.VENTA (usuario, id_producto, cantidad, precio, fecha_venta) values ('alberto', 10, 12, 37.72, '2022-01-18');
+insert into cochesAdame.VENTA (usuario, id_producto, cantidad, precio, fecha_venta) values ('prueba', 5, 69, 31.07, '2022-01-07');
+insert into cochesAdame.VENTA (usuario, id_producto, cantidad, precio, fecha_venta) values ('alberto', 8, 58, 39.97, '2022-02-09');
+insert into cochesAdame.VENTA (usuario, id_producto, cantidad, precio, fecha_venta) values ('prueba', 25, 9, 6.74, '2022-09-20');
 
 
 

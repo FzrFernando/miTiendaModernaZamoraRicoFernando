@@ -83,7 +83,6 @@ public class Main extends HttpServlet {
 			usuarioCadena = (String) sesion.getAttribute("usuario");
 			password = (String) sesion.getAttribute("password");
 			Users u = CRUDUsers.readUser(usuarioCadena);
-			u = CRUDUsers.readUser(usuarioCadena);
 			if(u!=null) {
 				if(Utilities.getMD5(password).equals(u.getPassword())) {
 					entrar= true;
@@ -127,25 +126,45 @@ public class Main extends HttpServlet {
 
 			List<Producto> listaProducto = CRUDProducto.loadList();
 
-			response.getWriter()
-					.append("<table border=\"1\" class='tabla'>" + "				<tr>"
-							+ "				<td class='tdId' id='bold'>ID</td>\n"
-							+ "            <td class='tdName' id='bold'>Nombre</td>\n"
-							+ "            <td class='tdPrice' id='bold'>Precio</td>\n"
-							+ "            <td class='tdDescription' id='bold'>Descripcion</td>\n"
-							+ "            <td class='tdCategoria' id='bold'>Categoria</td>" + "				</tr>");
+//			response.getWriter()
+//					.append("<table border=\"1\" class='tabla'>" + "				<tr>"
+//							+ "				<td class='tdId' id='bold'>ID</td>\n"
+//							+ "            <td class='tdName' id='bold'>Nombre</td>\n"
+//							+ "            <td class='tdPrice' id='bold'>Precio</td>\n"
+//							+ "            <td class='tdDescription' id='bold'>Descripcion</td>\n"
+//							+ "            <td class='tdCategoria' id='bold'>Categoria</td>"
+//							+ "			   <td class='tdStock' id='bold'>Stock</td>" + "				</tr>");
+			response.getWriter().append("<div class=\\\"grid-container\\\">");
 			for (Producto p : listaProducto) {
 				Categoria c = CRUDCategoria.readCategoria(p.getId_categoria());
-				response.getWriter().append("<tr>");
-				response.getWriter().append("<td>" + p.getId() + "</td>");
-				response.getWriter().append("<td>" + p.getNombre() + "</td>");
-				response.getWriter().append("<td>" + p.getPrecio() + " $</td>");
-				response.getWriter().append("<td>" + p.getDescripcion() + "</td>");
-				response.getWriter().append("<td>" + c.getNombre() + "</td>");
-				response.getWriter().append("</tr>");
+				
+				
+				
+				response.getWriter().append("<div class=\"card\">\n"
+						+ "           			 <div class=\"photo\">\n"
+						+ "               			 <img src=\"Images/Ford3.png\" alt=\"\" srcset=\"\">\n"
+						+ "            			</div>\n"
+						+ "           			 <div class=\"description\">\n"
+						+ "               			 <a class=\"titulitos\">"+ p.getNombre()+ "</a>  <br>\n"+ p.getPrecio()
+						+ "               			 <br> <a class=\"descripcion\"> " + p.getDescripcion() +"</a> "
+						+ "               			  Categoria	:  " + p.getId_categoria() +"<br>\n"
+						+                			  p.getStock() + " En Stock<br>\n"
+						+ "          			  </div>\n"
+						+ "       			 </div> \n");
+				
+//				response.getWriter().append("<tr>");
+//				response.getWriter().append("<td>" + p.getId() + "</td>");
+//				response.getWriter().append("<td>" + p.getNombre() + "</td>");
+//				response.getWriter().append("<td>" + p.getPrecio() + " $</td>");
+//				response.getWriter().append("<td>" + p.getDescripcion() + "</td>");			
+//				response.getWriter().append("<td>" + c.getNombre() + "</td>");
+//				response.getWriter().append("<td>" + p.getStock() + "</td>");
+//				response.getWriter().append("</tr>");
 			}
-			response.getWriter().append("</table>" + "</div>");
+			response.getWriter().append("</div>");
+			response.getWriter().append("</div>");
 			response.getWriter().append("</body>");
+			response.getWriter().append("</html>");
 
 //			response.getWriter().append("correcto");
 //			response.getWriter().append("<a href='index.html'");
