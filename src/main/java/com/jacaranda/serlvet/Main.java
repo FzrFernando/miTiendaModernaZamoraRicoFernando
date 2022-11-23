@@ -101,7 +101,7 @@ public class Main extends HttpServlet {
 		if(entrar) {
 			
 		
-		String bienvenida = ("Sesion: " + usuarioCadena);
+		String bienvenida = (usuarioCadena);
 		
 
 		response.getWriter().append("<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + "<head>\n"
@@ -113,9 +113,7 @@ public class Main extends HttpServlet {
 				+ "		<a id=\"titleBlue\" href=\"Main\">Buy</a>\n"
 				+ "		<a id=\"logo-header\" href=\"Main\"><img src=\"Images/logor.png\"></a>" + "\n"
 				+ "		<nav>\n" + "			<ul>\n" + "\n"
-				+ "				<li style=\"border-bottom: 2px solid #f0f2f1;\"><a\n"
-				+ "					>Productos</a></li>\n" + "<li><a\n"
-				+ "						href=\"index.jsp\"> "+ bienvenida +"</a></li>" + "			</ul>\n"
+				+ " <li class='imgCarro tooltip'> <a href='CarritoCompra'> <img src=\"Images/carro.svg\"> <span class='tooltiptext'>0</span></a></li>  <li class='imgUser tooltip'><a href='index.jsp'> <img src=\"Images/user.svg\"> <span class=\"tooltiptext\">"+ bienvenida + "</span> </a></li>		</ul>\n"
 				+ "		</nav>\n" + "\n" + "	</header>\n" + "	<div id=\"cuerpo\">");
 
 
@@ -143,16 +141,15 @@ public class Main extends HttpServlet {
 				
 				response.getWriter().append(" <div class=\"card\">\n"
 						+ "            <a href='CarritoCompra'> <div class=\"photo\">\n"
-						+ "                 <img src=\"Images/Ford3.png\">\n"
+						+ "                 <img class='foto' src=\"Images/Ford3.png\">\n"
 						+ "            </div>\n"
-						+ "\n"
 						+ "            <div class=\"description\">\n"
-						+ "                <a class=\"titulitos\">"+ p.getNombre() +"</a>  <br>\n"
+						+ "                <a class=\"titulitos\">"+ p.getNombre() +"</a> <small>"+c.getNombre()+" </small> <br>\n"
 						+                  p.getPrecio() + "$<br>\n"
 						+ "                <a class=\"descripcion\">" + p.getDescripcion() +"</a>  <br>\n"
-						+ "                <br>\n"
-						+ "                Categoria	:  "+ c.getNombre() + "<br>\n"
-						+                  + p.getStock()+ " En Stock<br>\n"
+						+ "                <hr>\n"
+						+ "					<a><Input type=\"number\" value='1' class='inputAnnadirCarro'><button class=\"buttonAnnadirCarro\">Antildeadir al carro</button></a> <br>"
+						+                  "Stock : "+ p.getStock()+ "<br>\n"
 						+ "                			\n" 
 						+ "            </div> </a>\n"
 						+ "        </div> ");

@@ -57,7 +57,7 @@ nav ul li {
     line-height: 80px;
     }
                
-nav ul li a {
+/* nav ul li a {
     display: block;
     padding: 0 10px;
     text-decoration: none;
@@ -68,7 +68,7 @@ nav ul li a {
 nav ul li a:hover {
     background: #231c23;
     color: #f0f2f1;
-}
+} */
 
 #title{
 	float: left;
@@ -408,14 +408,14 @@ td{
     margin: 1em;
 }
 
-img{
+.foto{
     max-width:100%;
     max-height:100%;
     border-radius: 3px;
     object-fit: cover;
 }
 
-img:hover{
+.foto:hover{
     max-width:100%;
     max-height:100%;
     border-radius: 5px;
@@ -426,6 +426,7 @@ img:hover{
 .card{
     display: grid;
     /* margin: 25px; */
+    height: 29em;
 }
 
 .description{
@@ -447,3 +448,126 @@ img:hover{
     font-weight: 300;
 }
 
+.inputAnnadirCarro{
+    width: 4em;
+    height: 50px;
+    border-radius: 4px;
+    border: 1px solid #d1d3da;  
+    text-align: center;
+}
+
+
+.buttonAnnadirCarro {
+	text-decoration:none;
+    width: 15em;
+    height: 52px;
+    background: #76D045;
+    color: white;
+	margin: 5px;
+    text-align: center;
+    border-radius: 4px;
+    border: 0px; 
+    cursor:pointer;
+}
+
+.buttonAnnadirCarro:hover {
+	text-decoration:none;
+    width: 15em;
+    height: 52px;
+    background: #62af39;
+    color: white;
+	margin: 5px;
+    text-align: center;
+    border-radius: 4px;
+    border: 0px; 
+    cursor:pointer;
+}
+
+.buttonAnnadirCarro:active {
+	text-decoration:none;
+    width: 15em;
+    height: 52px;
+    background: #49822b;
+    color: white;
+	margin: 5px;
+    text-align: center;
+    transition: 0.2s;
+    border-radius: 10px;
+    border: 0px; 
+    cursor:pointer;
+}
+
+
+/* ---------------------------------ESTILO IMAGENES HEADER------------------------------------ */
+.imgCarro{
+	position:relative;
+ 	margin-right: 7.5px; 
+	padding-top: 12.5px;
+	padding-bottom: 2px;
+	padding-left: 8px;
+	padding-right: 8px;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+}
+.imgCarro:hover{
+	position:relative;
+ 	margin-right: 7.5px; 
+	padding-top: 12.5px;
+	padding-bottom: 2px;
+	padding-left: 7.5px;
+	padding-right: 8px;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+	background-color: rgb(86 86 86 / 45%);
+	border-radius: 5px;
+}
+
+.imgUser{
+	position:relative;
+	margin-top: 7.5px;
+	padding: 12.5px;
+	width: 40px;
+	height: 40px;
+
+} 
+
+.imgUser:hover{
+	position:relative;
+	margin-top: 7.5px;
+	padding: 12.5px;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	background-color: rgb(86 86 86 / 45%);
+	border-radius: 5px;
+}
+
+/* ---------------------------------ESTILO TOOLTIP------------------------------------ */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 91px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -45px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
