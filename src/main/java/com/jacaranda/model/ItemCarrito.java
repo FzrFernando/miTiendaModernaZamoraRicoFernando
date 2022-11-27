@@ -6,7 +6,7 @@ import java.util.Objects;
 public class ItemCarrito {
 	private int id_articulo;
 	private int cantidad;
-	private int precio;
+	private float precio;
 	private LocalDateTime fecha;
 	
 	public ItemCarrito() {
@@ -16,7 +16,7 @@ public class ItemCarrito {
 
 	
 
-	public ItemCarrito(int id_articulo, int cantidad, int precio, LocalDateTime fecha) {
+	public ItemCarrito(int id_articulo, int cantidad, float precio, LocalDateTime fecha) {
 		super();
 		this.id_articulo = id_articulo;
 		this.cantidad = cantidad;
@@ -42,11 +42,11 @@ public class ItemCarrito {
 		this.cantidad = cantidad;
 	}
 
-	public int getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(int precio) {
+	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
 
@@ -62,7 +62,7 @@ public class ItemCarrito {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cantidad, fecha, id_articulo, precio);
+		return Objects.hash(id_articulo);
 	}
 
 
@@ -76,8 +76,7 @@ public class ItemCarrito {
 		if (getClass() != obj.getClass())
 			return false;
 		ItemCarrito other = (ItemCarrito) obj;
-		return cantidad == other.cantidad && Objects.equals(fecha, other.fecha) && id_articulo == other.id_articulo
-				&& precio == other.precio;
+		return id_articulo == other.id_articulo;
 	}
 
 

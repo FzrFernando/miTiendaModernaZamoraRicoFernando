@@ -3,6 +3,10 @@ package com.jacaranda.model;
 import java.util.List;
 import java.util.Objects;
 
+import org.hibernate.Session;
+
+import com.jacaranda.crud.ConnectionBD;
+
 public class Carrito {
 	public List<ItemCarrito> carrito;
 
@@ -36,6 +40,7 @@ public class Carrito {
 		return resultado;
 		
 	}
+	
 
 	public List<ItemCarrito> getCarrito() {
 		return carrito;
@@ -44,6 +49,7 @@ public class Carrito {
 	public void setCarrito(List<ItemCarrito> carrito) {
 		this.carrito = carrito;
 	}
+	
 
 	@Override
 	public int hashCode() {

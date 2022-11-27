@@ -53,6 +53,7 @@ public class Main extends HttpServlet {
 		boolean salir=false;
 		boolean usuarioAdmin=false;
 		String redirect = null;
+		int contadorProductos=0;
 		
 		String usuarioCadena = request.getParameter("usuario");
 		String password = request.getParameter("password");
@@ -104,17 +105,29 @@ public class Main extends HttpServlet {
 		String bienvenida = (usuarioCadena);
 		
 
-		response.getWriter().append("<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + "<head>\n"
-				+ "    <meta charset=\"UTF-8\">\n" + "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n"
+		response.getWriter().append("<!DOCTYPE html>\n" 
+				+ "<html lang=\"en\">\n" 
+				+ "<head>\n"
+				+ "    <meta charset=\"UTF-8\">\n" 
+				+ "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n"
 				+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
-				+ "    <link rel=\"stylesheet\" href=\"style.css\">\n" + "    <title>Document</title>\n"
-						+ "<link rel=\"shortcut icon\" href=\"Images/logor.png\"> " + "</head>\n"
-				+ "<body>" + "<header id=\"main-header\">\n" + "		<a id=\"title\" href=\"Main\">CAR</a>\n"
+				+ "    <link rel=\"stylesheet\" href=\"style.css\">\n" 
+				+ "    <title>Document</title>\n"
+				+ "	   <link rel=\"shortcut icon\" href=\"Images/logor.png\"> " 
+				+ "</head>\n"
+				+ "<body>" 
+				+ "<header id=\"main-header\">\n" 
+				+ "		<a id=\"title\" href=\"Main\">CAR</a>\n"
 				+ "		<a id=\"titleBlue\" href=\"Main\">Buy</a>\n"
-				+ "		<a id=\"logo-header\" href=\"Main\"><img src=\"Images/logor.png\"></a>" + "\n"
-				+ "		<nav>\n" + "			<ul>\n" + "\n"
-				+ " <li class='imgCarro tooltip'> <a href='CarritoCompra'> <img src=\"Images/carro.svg\"> <span class='tooltiptext'>0</span></a></li>  <li class='imgUser tooltip'><a href='index.jsp'> <img src=\"Images/user.svg\"> <span class=\"tooltiptext\">"+ bienvenida + "</span> </a></li>		</ul>\n"
-				+ "		</nav>\n" + "\n" + "	</header>\n" + "	<div id=\"cuerpo\">");
+				+ "		<a id=\"logo-header\" href=\"Main\"><img src=\"Images/logor.png\"></a>" 
+				+ "\n"
+				+ "		<nav>\n" 
+				+ "			<ul>\n" 
+				+ "\n"
+				+ " <li class='imgCarro tooltip'> <a href='CarritoCompra'> <img src=\"Images/carro.svg\"> <span class='tooltiptext'>"+ contadorProductos +"</span></a></li>  <li class='imgUser tooltip'><a href='index.jsp'> <img src=\"Images/user.svg\"> <span class=\"tooltiptext\">"+ bienvenida + "</span> </a></li></ul>\n"
+				+ "		</nav>\n" 
+				+ "\n" 
+				+ "	</header>\n" );
 
 
 				if (usuarioAdmin) {
@@ -140,19 +153,24 @@ public class Main extends HttpServlet {
 				
 				
 				response.getWriter().append(" <div class=\"card\">\n"
-						+ "            <a href='CarritoCompra'> <div class=\"photo\">\n"
-						+ "                 <img class='foto' src=\"Images/Ford3.png\">\n"
-						+ "            </div>\n"
-						+ "            <div class=\"description\">\n"
-						+ "                <a class=\"titulitos\">"+ p.getNombre() +"</a> <small>"+c.getNombre()+" </small> <br>\n"
-						+                  p.getPrecio() + "$<br>\n"
-						+ "                <a class=\"descripcion\">" + p.getDescripcion() +"</a>  <br>\n"
-						+ "                <hr>\n"
-						+ "					<a><Input type=\"number\" value='1' class='inputAnnadirCarro'><button class=\"buttonAnnadirCarro\">Antildeadir al carro</button></a> <br>"
-						+                  "Stock : "+ p.getStock()+ "<br>\n"
-						+ "                			\n" 
-						+ "            </div> </a>\n"
-						+ "        </div> ");
+									+ "            <div class=\"photo\">\n"
+									+ "                 <img class='foto' src=\"Images/Ford3.png\">\n"
+									+ "            </div>\n"
+									+ "            <div class=\"description\">\n"
+									+ "                <a class=\"titulitos\">"+ p.getNombre() +"</a> "
+									+ "				   <small>"+c.getNombre()+" </small> <br>\n"
+									+                  p.getPrecio() + "$<br>\n"
+									+ "                <a class=\"descripcion\">" + p.getDescripcion() +"</a>  <br>\n"
+									+ "                <hr>\n"
+									+ "					<form action='annadirAlCarro.jsp' method='post' id='form'>"
+									+ "				   		<Input type=\"number\" value='1' class='inputAnnadirCarro' name='cantidad' max="+ p.getStock() +">"
+									+ "				   		<Input type=\"text\" name='id_articulo' value="+ p.getId() +" hidden>"
+									+ "				   		<Input type=\"text\" name='precio' value="+ p.getPrecio() +" hidden>"
+									+ "				   		<button type=\"submit\" class=\"buttonAnnadirCarro\">A&ntildeadir al carro</button> <br>"
+									+ "				   		Stock : "+ p.getStock()+ "<br>\n"
+									+ "					</form>"
+									+ "            </div> \n"
+									+ "        </div> ");
 				
 //				response.getWriter().append("<tr>");
 //				response.getWriter().append("<td>" + p.getId() + "</td>");
