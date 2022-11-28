@@ -1,3 +1,7 @@
+<%@page import="com.jacaranda.model.Categoria"%>
+<%@page import="com.jacaranda.crud.CRUDCategoria"%>
+<%@page import="com.jacaranda.crud.CRUDProducto"%>
+<%@page import="com.jacaranda.model.Producto"%>
 <%@page import="java.util.List"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="com.jacaranda.model.ItemCarrito"%>
@@ -23,37 +27,67 @@
 	String password = (String) sesion.getAttribute("password");
 	LocalDateTime date = LocalDateTime.now();
 	Users u = CRUDUsers.readUser(usuarioCadena);
-	/* boolean carritoExiste= true; */
 	if (u != null) {
 		if (Utilities.getMD5(password).equals(u.getPassword())) {
 			sesion.setAttribute("login", "True");
 			sesion.setAttribute("usuario", usuarioCadena);
 			sesion.setAttribute("password", password);
 		} else {
-			redirect = "errorPage.jsp?error=4";
+			
+			response.sendRedirect("errorPage.jsp?error=4");
 		}
 	}
 
+	
+	
 	Carrito c = (Carrito) sesion.getAttribute("carrito");
+	
 
 	int id_articulo = Integer.parseInt(request.getParameter("id_articulo"));
+	
+	int numeroProducto = 0;
+	if(c!= null){
+		numeroProducto=c.cantidadProductos(id_articulo);
+	}
+	
+	//We need product and category at this point
+	Producto p = CRUDProducto.readProducto(id_articulo);
+	Categoria cat = CRUDCategoria.readCategoria(p.getId_categoria());
+	
 	int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+	if(cantidad <= 0 || p.getStock()<(numeroProducto+cantidad) || cantidad>p.getStock()){
+		response.sendRedirect("Main");//Hacer que cuando pase al main salga mensaje de erro
+	}
+	else{
+		
 	float precio = Float.parseFloat(request.getParameter("precio"));
-	int contadorProductos = Integer.parseInt(request.getParameter("contadorProductos"));
-	contadorProductos += cantidad;
+	int contadorProductos = 0;//We use this variable to show it to the user
+	
 
 	ItemCarrito i = new ItemCarrito(id_articulo, cantidad, precio, date);
 
 	if (c == null) {
 		c = new Carrito();
+		c.addItem(i);
+		contadorProductos += cantidad;
 		sesion.setAttribute("carrito", c);
 	}
 
 	else {
-			c.updateItem(i, contadorProductos);
-			contadorProductos = c.cantidadProductos();
+			if (c.carrito.contains(i)){
+				c.updateItem(i, cantidad);
+				contadorProductos = c.cantidadProductosTotales();
+			}
+			else{
+				c.addItem(i);
+				contadorProductos = c.cantidadProductosTotales();
+				sesion.setAttribute("carrito", c);
+			}
+			
 			
 		}
+	
+
 	%>
 	<header id="main-header">
 		<a id="title" href="Main">CAR</a> <a id="titleBlue" href="Main">Buy</a>
@@ -80,12 +114,11 @@
 			</div>
 
 			<div class="description">
-				<a class="titulitos">Avenger</a> <small>Pontiac</small> <br>
-				38.82 $<br> <a class="descripcion">Burn of unsp deg mult
-					sites of right ankle and foot, subs</a> <br>
+				<a class="titulitos"><%=p.getNombre() %></a> <small><%=cat.getNombre() %></small> <br>
+				<%=p.getPrecio() %><br> <a class="descripcion"><%=p.getDescripcion() %></a> <br>
 				<hr>
 
-				<p class="colorAzul"><%= contadorProductos %> Artículos Añadidos</p>
+				<p class="colorAzul"> + <%= cantidad %> Artículos Añadidos</p>
 
 				<div id="introducir">
 					<a href="Main">
@@ -104,6 +137,6 @@
 			</div>
 		</div>
 	</div>
-
+<% } %>
 </body>
 </html>

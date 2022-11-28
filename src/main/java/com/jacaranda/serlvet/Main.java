@@ -106,7 +106,7 @@ public class Main extends HttpServlet {
 		if(entrar) {
 			ca= (Carrito) sesion.getAttribute("carrito");
 			if(ca!=null) {
-				contadorProductos=ca.cantidadProductos();
+				contadorProductos=ca.cantidadProductosTotales();
 			}
 			
 			
@@ -161,8 +161,12 @@ public class Main extends HttpServlet {
 			response.getWriter().append(" <br> <div class=grid-container>");
 			for (Producto p : listaProducto) {
 				Categoria c = CRUDCategoria.readCategoria(p.getId_categoria());
+				int validStock = 0;//We will use this variable to know the actual stock
 				
-				
+				if(ca != null) {//If ca is null this is gonna fail
+					validStock = ca.cantidadProductos(p.getId());
+				}
+				if((p.getStock()  - validStock)>0) {
 				
 				response.getWriter().append(" <div class=\"card\">\n"
 									+ "            <div class=\"photo\">\n"
@@ -174,16 +178,16 @@ public class Main extends HttpServlet {
 									+                  p.getPrecio() + "$<br>\n"
 									+ "                <a class=\"descripcion\">" + p.getDescripcion() +"</a>  <br>\n"
 									+ "                <hr>\n"
-									+ "					<form action='annadirAlCarro.jsp' method='post' id='form'>"
-									+ "				   		<Input type=\"number\" value='1' class='inputAnnadirCarro' name='cantidad' max="+ p.getStock() +">"
+									+"					<form action='annadirAlCarro.jsp' method='post' id='form'>"
+									+ "				   		<Input type=\"number\" value='1' class='inputAnnadirCarro' name='cantidad' >"
 									+ "				   		<Input type=\"text\" name='id_articulo' value="+ p.getId() +" hidden>"
 									+ "				   		<Input type=\"text\" name='precio' value="+ p.getPrecio() +" hidden>"
-									+ "						<Input type='number' name='contadorProductos' value='"+ contadorProductos + "' hidden>"
 									+ "				   		<button type=\"submit\" class=\"buttonAnnadirCarro\">A&ntildeadir al carro</button> <br>"
 									+ "				   		Stock : "+ p.getStock()+ "<br>\n"
 									+ "					</form>"
-									+ "            </div> \n"
+									+"            </div> \n"
 									+ "        </div> ");
+				}
 				
 //				response.getWriter().append("<tr>");
 //				response.getWriter().append("<td>" + p.getId() + "</td>");

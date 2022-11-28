@@ -1,22 +1,20 @@
 package com.jacaranda.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import org.hibernate.Session;
-
-import com.jacaranda.crud.ConnectionBD;
 
 public class Carrito {
-	public List<ItemCarrito> carrito;
+	public List<ItemCarrito> carrito = new ArrayList<ItemCarrito>();
 
 	public Carrito() {
 		super();
-		this.carrito = null;
+		
 	}
 
 
-	public boolean addCarrito(ItemCarrito c) {
+	public boolean addItem(ItemCarrito c) {
 		boolean resultado = false;
 		try {
 			carrito.add(c);
@@ -55,10 +53,29 @@ public class Carrito {
 		return resultado;
 	}
 	
-	public int cantidadProductos() {
+	public int cantidadProductosTotales() {
 		int resultado = 0;
 		for(ItemCarrito i : carrito) {
 			resultado += i.getCantidad();
+		}
+		return resultado;
+	}
+	
+	/**
+	 * We need this method to control product's stock
+	 * 
+	 * @param id
+	 * @return The amount of products there is in one item specific
+	 */
+	public int cantidadProductos(int id) {//Preguntar si este método está bien, o se debería hacer de otra forma
+		int resultado = 0;
+		try {
+			ItemCarrito i = new ItemCarrito(id, 0, 0, null);
+			int posicion = carrito.indexOf(i);
+			resultado=carrito.get(posicion).getCantidad();
+		
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 		return resultado;
 	}
