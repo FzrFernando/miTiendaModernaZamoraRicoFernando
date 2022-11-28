@@ -319,68 +319,6 @@ input:invalid{
 }
 
 
-
-/* ---------------------------------ESTILO TABLAS------------------------------------ */
-
-/* #bold{
-    font-weight: bold;
-}
-
-td{
-	height: 1.75em;
-}
-
-.tdId{
-	width: 5%;
-	height: 3.5em;
-	background-color: black;
-	color:white;
-}
-
-.tdPrice{
-	width: 10%;
-	background-color: black;
-	color:white;
-}
-
-.tdName{
-	width: 15%;
-	background-color: black;
-	color:white;
-}
-
-.tdDescription{
-	width: 45%;
-	background-color: black;
-	color:white;
-}
-
-.tdCategoria{
-	width: 15%;
-	background-color: black;
-	color:white;
-}
-
-.tdStock{
-	width: 5%;
-	background-color: black;
-	color:white;
-}
-
-
-.tabla{
-	width:98.5%;
-	border-collapse: collapse;
-	background-color: rgb(255, 255, 255, 0.95);
-	padding: 1em;
-	margin: 1em;
-	border: 1px solid black;
-	border-radius: 5px;
-	box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%); 
-	table-layout: fixed
-	
-}  */
-
 /* ---------------------------------ESTILO AÑADIR PRODUCTO------------------------------------ */
 
 .annadirBorder{
@@ -501,22 +439,22 @@ td{
 /* ---------------------------------ESTILO IMAGENES HEADER------------------------------------ */
 .imgCarro{
 	position:relative;
- 	margin-right: 7.5px; 
+ 	margin-right: 5.5px; 
 	padding-top: 12.5px;
 	padding-bottom: 2px;
 	padding-left: 8px;
-	padding-right: 8px;
+	padding-right: 11px;
 	width: 50px;
 	height: 50px;
 	cursor: pointer;
 }
 .imgCarro:hover{
 	position:relative;
- 	margin-right: 7.5px; 
+ 	margin-right: 5.5px; 
 	padding-top: 12.5px;
 	padding-bottom: 2px;
-	padding-left: 7.5px;
-	padding-right: 8px;
+	padding-left: 8.5px;
+	padding-right: 11px;
 	width: 50px;
 	height: 50px;
 	cursor: pointer;
@@ -570,4 +508,56 @@ td{
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+/* ---------------------------------ESTILO TOOLTIP------------------------------------ */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 91px;
+    /* background-color: rgb(255, 255, 255, 0.1);
+    backdrop-filter: blur(30px);
+    border: white; */
+    background-color: #000000;
+    box-shadow: rgb(0,0,0,0.5);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -45px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* ---------------------------------ESTILO AÑADIR PRODUCTO------------------------------------ */
+
+.fondoCarrito{
+    background-color: rgb(255, 255, 255) ;
+    margin: 0 auto;
+    height: auto;
+    width: 60%; 
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%); 
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 1.25em;
+}
+
+.photo_sure{
+    width: 50%;
+}
+
+.colorAzul{
+    color: #006eb8;
 }

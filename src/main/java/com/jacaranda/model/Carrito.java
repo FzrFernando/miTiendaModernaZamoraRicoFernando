@@ -41,6 +41,28 @@ public class Carrito {
 		
 	}
 	
+	public boolean updateItem(ItemCarrito i, int c) {
+		boolean resultado = false;
+		
+		try {
+			i = this.carrito.get(this.carrito.indexOf(i));
+			i.setCantidad(i.getCantidad()+c);
+			resultado =true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+			
+		return resultado;
+	}
+	
+	public int cantidadProductos() {
+		int resultado = 0;
+		for(ItemCarrito i : carrito) {
+			resultado += i.getCantidad();
+		}
+		return resultado;
+	}
+	
 
 	public List<ItemCarrito> getCarrito() {
 		return carrito;

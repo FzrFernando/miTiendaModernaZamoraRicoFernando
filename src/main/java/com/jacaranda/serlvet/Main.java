@@ -14,6 +14,7 @@ import com.jacaranda.crud.CRUDCategoria;
 import com.jacaranda.crud.CRUDProducto;
 import com.jacaranda.crud.CRUDUsers;
 import com.jacaranda.crud.Utilities;
+import com.jacaranda.model.Carrito;
 import com.jacaranda.model.Categoria;
 import com.jacaranda.model.Producto;
 import com.jacaranda.model.Users;
@@ -54,11 +55,13 @@ public class Main extends HttpServlet {
 		boolean usuarioAdmin=false;
 		String redirect = null;
 		int contadorProductos=0;
+		Carrito ca = null;
+		HttpSession sesion = null;
 		
 		String usuarioCadena = request.getParameter("usuario");
 		String password = request.getParameter("password");
 		if(usuarioCadena!=null && password!=null) {
-			HttpSession sesion = request.getSession();
+			sesion = request.getSession();
 			Users u = CRUDUsers.readUser(usuarioCadena);
 			u = CRUDUsers.readUser(usuarioCadena);
 			if(u!=null) {
@@ -69,6 +72,7 @@ public class Main extends HttpServlet {
 					sesion.setAttribute("usuario", usuarioCadena);
 					sesion.setAttribute("password", password);
 					usuarioAdmin = u.isAdministrador();		
+					
 				}else {
 					salir=true;
 					redirect="errorPage.jsp?error=4";
@@ -80,7 +84,7 @@ public class Main extends HttpServlet {
 			}
 		}
 		if(!entrar) {
-			HttpSession sesion = request.getSession();
+			sesion = request.getSession();
 			usuarioCadena = (String) sesion.getAttribute("usuario");
 			password = (String) sesion.getAttribute("password");
 			Users u = CRUDUsers.readUser(usuarioCadena);
@@ -100,6 +104,11 @@ public class Main extends HttpServlet {
 		
 		
 		if(entrar) {
+			ca= (Carrito) sesion.getAttribute("carrito");
+			if(ca!=null) {
+				contadorProductos=ca.cantidadProductos();
+			}
+			
 			
 		
 		String bienvenida = (usuarioCadena);
@@ -124,7 +133,8 @@ public class Main extends HttpServlet {
 				+ "		<nav>\n" 
 				+ "			<ul>\n" 
 				+ "\n"
-				+ " <li class='imgCarro tooltip'> <a href='CarritoCompra'> <img src=\"Images/carro.svg\"> <span class='tooltiptext'>"+ contadorProductos +"</span></a></li>  <li class='imgUser tooltip'><a href='index.jsp'> <img src=\"Images/user.svg\"> <span class=\"tooltiptext\">"+ bienvenida + "</span> </a></li></ul>\n"
+				+ " <li class='imgCarro tooltip'> <a href='CarritoCompra'> <img src=\"Images/carro.svg\"> <span class='tooltiptext'>"+ contadorProductos +"</span></a></li>  "
+				+ "<li class='imgUser tooltip'><a href='index.jsp'> <img src=\"Images/user.svg\"> <span class=\"tooltiptext\">"+ bienvenida + "</span> </a></li></ul>\n"
 				+ "		</nav>\n" 
 				+ "\n" 
 				+ "	</header>\n" );
@@ -134,6 +144,8 @@ public class Main extends HttpServlet {
 					response.getWriter().append("<br>"
 							+ "<a href='annadirProducto.jsp?noValido=0'><button class='registerButton' id='bold'>A&ntildeadir Producto</button></a> <br>");
 				}
+				
+			
 
 			List<Producto> listaProducto = CRUDProducto.loadList();
 
@@ -166,6 +178,7 @@ public class Main extends HttpServlet {
 									+ "				   		<Input type=\"number\" value='1' class='inputAnnadirCarro' name='cantidad' max="+ p.getStock() +">"
 									+ "				   		<Input type=\"text\" name='id_articulo' value="+ p.getId() +" hidden>"
 									+ "				   		<Input type=\"text\" name='precio' value="+ p.getPrecio() +" hidden>"
+									+ "						<Input type='number' name='contadorProductos' value='"+ contadorProductos + "' hidden>"
 									+ "				   		<button type=\"submit\" class=\"buttonAnnadirCarro\">A&ntildeadir al carro</button> <br>"
 									+ "				   		Stock : "+ p.getStock()+ "<br>\n"
 									+ "					</form>"
