@@ -13,6 +13,15 @@ public class Carrito {
 		
 	}
 
+	public ItemCarrito getItem(int id) {
+		ItemCarrito resultado = null;
+		for(ItemCarrito i : carrito) {
+			if(i.getId_articulo() == id)
+				resultado = i;
+		}
+		return resultado;
+	}
+	
 
 	public boolean addItem(ItemCarrito c) {
 		boolean resultado = false;
@@ -39,6 +48,18 @@ public class Carrito {
 		
 	}
 	
+	public boolean delCarrito() {
+		boolean resultado = false;
+		try {
+			carrito.clear();
+			resultado = true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return resultado;
+		
+	}
+	
 	public boolean updateItem(ItemCarrito i, int c) {
 		boolean resultado = false;
 		
@@ -57,6 +78,17 @@ public class Carrito {
 		int resultado = 0;
 		for(ItemCarrito i : carrito) {
 			resultado += i.getCantidad();
+		}
+		return resultado;
+	}
+	/**
+	 * We need this method to know product's price
+	 * @return Total Price Of All Products
+	 */
+	public float precioTotal() {
+		float resultado = 0;
+		for(ItemCarrito i : carrito) {
+			resultado += (i.getPrecio()*this.cantidadProductos(i.getId_articulo()));
 		}
 		return resultado;
 	}

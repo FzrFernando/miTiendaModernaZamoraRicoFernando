@@ -1,6 +1,6 @@
 package com.jacaranda.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -36,13 +36,13 @@ public class Venta {
 	private Producto id_producto;
 	@Id
 	@Column(name = "fecha_venta")
-	private LocalDate fecha_venta;
+	private LocalDateTime fecha_venta;
 	@Column(name = "CANTIDAD")
 	private int cantidad;
 	@Column(name = "PRECIO")
 	private float precio;
 	
-	public Venta(Users usuario, Producto id_producto, LocalDate fecha_venta, int cantidad, float precio) {
+	public Venta(Users usuario, Producto id_producto, LocalDateTime fecha_venta, int cantidad, float precio) {
 		super();
 		this.usuario = usuario;
 		this.id_producto = id_producto;
@@ -72,11 +72,11 @@ public class Venta {
 		this.id_producto = id_producto;
 	}
 
-	public LocalDate getFecha_venta() {
+	public LocalDateTime getFecha_venta() {
 		return fecha_venta;
 	}
 
-	public void setFecha_venta(LocalDate fecha_venta) {
+	public void setFecha_venta(LocalDateTime fecha_venta) {
 		this.fecha_venta = fecha_venta;
 	}
 

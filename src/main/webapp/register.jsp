@@ -17,9 +17,6 @@
 
 		<nav>
 			<ul>
-
-				<li style="border-bottom: 2px solid #f0f2f1;"><a
-					href="index.jsp">Registrarse</a></li>
 			</ul>
 		</nav>
 </header>

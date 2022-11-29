@@ -74,18 +74,18 @@ insert into cochesAdame.PRODUCTO (id_producto, nombre, descripcion, precio, id_c
 	ID_PRODUCTO NUMERIC(5),
 	CANTIDAD NUMERIC(10),
 	PRECIO FLOAT(5,2),
-	FECHA_VENTA DATE,
+	FECHA_VENTA DATETIME,
 	CONSTRAINT PK_VENTA PRIMARY KEY(USUARIO, ID_PRODUCTO, FECHA_VENTA),
 	CONSTRAINT FK_VENTA_PRODUCTO FOREIGN KEY (ID_PRODUCTO) REFERENCES PRODUCTO(ID_PRODUCTO),
 	CONSTRAINT FK_VENTA_USUARIO FOREIGN KEY (USUARIO) REFERENCES USUARIO(USUARIO)
 	);
 
 
-insert into cochesAdame.VENTA (usuario, id_producto, cantidad, precio, fecha_venta) values ('alberto', 22, 31, 19.88, '2022-06-02');
-insert into cochesAdame.VENTA (usuario, id_producto, cantidad, precio, fecha_venta) values ('alberto', 10, 12, 37.72, '2022-01-18');
-insert into cochesAdame.VENTA (usuario, id_producto, cantidad, precio, fecha_venta) values ('prueba', 5, 69, 31.07, '2022-01-07');
-insert into cochesAdame.VENTA (usuario, id_producto, cantidad, precio, fecha_venta) values ('alberto', 8, 58, 39.97, '2022-02-09');
-insert into cochesAdame.VENTA (usuario, id_producto, cantidad, precio, fecha_venta) values ('prueba', 25, 9, 6.74, '2022-09-20');
+insert into cochesAdame.VENTA (usuario, id_producto, cantidad, precio, fecha_venta) values ('alberto', 22, 31, 19.88, '2022-06-02 00:00:00');
+insert into cochesAdame.VENTA (usuario, id_producto, cantidad, precio, fecha_venta) values ('alberto', 10, 12, 37.72, '2022-01-18 00:00:00');
+insert into cochesAdame.VENTA (usuario, id_producto, cantidad, precio, fecha_venta) values ('prueba', 5, 69, 31.07, '2022-01-07 00:00:00');
+insert into cochesAdame.VENTA (usuario, id_producto, cantidad, precio, fecha_venta) values ('alberto', 8, 58, 39.97, '2022-02-09 00:00:00');
+insert into cochesAdame.VENTA (usuario, id_producto, cantidad, precio, fecha_venta) values ('prueba', 25, 9, 6.74, '2022-09-20 00:00:00');
 
 
 

@@ -22,7 +22,6 @@ sesion.invalidate();
 		<nav>
 			<ul>
 
-				<li style="border-bottom: 2px solid #f0f2f1;"><a>Log in</a></li>
 			</ul>
 		</nav>
 

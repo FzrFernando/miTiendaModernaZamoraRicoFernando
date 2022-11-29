@@ -1,6 +1,16 @@
-<%@page import="java.util.List"%>
-<%@page import="com.jacaranda.crud.CRUDCategoria"%>
+<%@page import="com.jacaranda.model.Venta"%>
+<%@page import="com.jacaranda.crud.CRUDVenta"%>
 <%@page import="com.jacaranda.model.Categoria"%>
+<%@page import="com.jacaranda.crud.CRUDCategoria"%>
+<%@page import="com.jacaranda.crud.CRUDProducto"%>
+<%@page import="com.jacaranda.model.Producto"%>
+<%@page import="java.util.List"%>
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="com.jacaranda.model.ItemCarrito"%>
+<%@page import="com.jacaranda.crud.Utilities"%>
+<%@page import="com.jacaranda.crud.CRUDUsers"%>
+<%@page import="com.jacaranda.model.Users"%>
+<%@page import="com.jacaranda.model.Carrito"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,16 +23,28 @@
 </head>
 <body>
 <%
-String bienvenida="";
-HttpSession sesion=request.getSession();
-String isSesion = (String) sesion.getAttribute("login");
-String userSesion= (String) sesion.getAttribute("usuario");
-if(isSesion != null && userSesion!=null && isSesion.equals("True")){
-	bienvenida=("Sesion: "+userSesion);
+String redirect = "";
+HttpSession sesion = request.getSession();
+String usuarioCadena = (String) sesion.getAttribute("usuario");
+String password = (String) sesion.getAttribute("password");
+LocalDateTime date = LocalDateTime.now();
+Users u = CRUDUsers.readUser(usuarioCadena);
+if (u != null) {
+	if (Utilities.getMD5(password).equals(u.getPassword())) {
+		sesion.setAttribute("login", "True");
+		sesion.setAttribute("usuario", usuarioCadena);
+		sesion.setAttribute("password", password);
+	} else {
+		
+		response.sendRedirect("errorPage.jsp?error=4");
+	}
 }
-else{
-%> <jsp:forward page="errorPage.jsp?error=3"></jsp:forward> <%
-}
+
+
+
+Carrito ca = (Carrito) sesion.getAttribute("carrito");
+
+int contadorProductos=ca.cantidadProductosTotales();
 %>
 	<main>
 		<header id="main-header">
@@ -33,10 +55,24 @@ else{
 
 			<nav>
 				<ul>
-
-					<li style="border-bottom: 2px solid #f0f2f1;"><a>Añadir Producto</a></li>
-					<li><a
-						href="index.jsp"><%=bienvenida %></a></li>
+					<li class='imgDollar tooltip';> 
+	                    <a href='#'> 
+	                        <img src="Images/dollar.svg" width="30px"> 
+	                    </a>
+	                </li> 
+	                <li class='imgCarro tooltip';> 
+	                    <a href='carrito.jsp'> 
+	                        <img src="Images/carro.svg" width="50px"> 
+	                        <span class='tooltiptext'><%= contadorProductos %></span>
+	                    </a>
+	                </li> 
+	                <li class='imgUser tooltip'>
+	                    <a href='index.jsp'> 
+	                        <img src="Images/user.svg" width="38.5px"> 
+	                        <span class="tooltiptext"><%=usuarioCadena%>
+	                        </span> 
+	                    </a>
+	                </li>	
 				</ul>
 			</nav>
 		</header>

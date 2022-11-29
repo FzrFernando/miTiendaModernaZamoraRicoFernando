@@ -15,12 +15,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Añadir al Carro</title>
 <link rel="stylesheet" href="style.css">
 <link rel="shortcut icon" href="Images/logor.png">
 </head>
 <body>
-	<%
+<%
 	String redirect = "";
 	HttpSession sesion = request.getSession();
 	String usuarioCadena = (String) sesion.getAttribute("usuario");
@@ -45,10 +45,9 @@
 
 	int id_articulo = Integer.parseInt(request.getParameter("id_articulo"));
 	
-	int numeroProducto = 0;
-	if(c!= null){
-		numeroProducto=c.cantidadProductos(id_articulo);
-	}
+
+	int numeroProducto=c.cantidadProductos(id_articulo);
+	
 	
 	//We need product and category at this point
 	Producto p = CRUDProducto.readProducto(id_articulo);
@@ -66,14 +65,6 @@
 
 	ItemCarrito i = new ItemCarrito(id_articulo, cantidad, precio, date);
 
-	if (c == null) {
-		c = new Carrito();
-		c.addItem(i);
-		contadorProductos += cantidad;
-		sesion.setAttribute("carrito", c);
-	}
-
-	else {
 			if (c.carrito.contains(i)){
 				c.updateItem(i, cantidad);
 				contadorProductos = c.cantidadProductosTotales();
@@ -85,7 +76,6 @@
 			}
 			
 			
-		}
 	
 
 	%>
@@ -94,7 +84,12 @@
 		<a id="logo-header" href="Main"><img src="Images/logor.png"></a>
 		<nav>
 			<ul>
-				<li class='imgCarro tooltip'><a href='CarritoCompra'> <img
+				<li class='imgDollar tooltip';> 
+                    <a href='ventas.jsp'> 
+                        <img src="Images/dollar.svg" width="30px"> 
+                    </a>
+                </li> 
+				<li class='imgCarro tooltip'><a href='carrito.jsp'> <img
 						src="Images/carro.svg"> <span class='tooltiptext'><%=contadorProductos%>
 					</span>
 				</a></li>
@@ -128,7 +123,7 @@
 					</a>
 				</div>
 				<div id="registrarse">
-					<a href="CarritoCompra">
+					<a href="carrito.jsp">
 						<button class="registerButton" type="button">
 							<h2>Ir al carrito</h2>
 						</button>

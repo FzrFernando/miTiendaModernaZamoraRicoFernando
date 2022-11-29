@@ -55,7 +55,7 @@ public class Main extends HttpServlet {
 		boolean usuarioAdmin=false;
 		String redirect = null;
 		int contadorProductos=0;
-		Carrito ca = null;
+		
 		HttpSession sesion = null;
 		
 		String usuarioCadena = request.getParameter("usuario");
@@ -104,8 +104,12 @@ public class Main extends HttpServlet {
 		
 		
 		if(entrar) {
-			ca= (Carrito) sesion.getAttribute("carrito");
-			if(ca!=null) {
+			Carrito ca= (Carrito) sesion.getAttribute("carrito");
+			if(ca == null) {
+				ca = new Carrito();
+				sesion.setAttribute("carrito", ca);
+			}
+			else {
 				contadorProductos=ca.cantidadProductosTotales();
 			}
 			
@@ -121,7 +125,7 @@ public class Main extends HttpServlet {
 				+ "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n"
 				+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
 				+ "    <link rel=\"stylesheet\" href=\"style.css\">\n" 
-				+ "    <title>Document</title>\n"
+				+ "    <title>Productos</title>\n"
 				+ "	   <link rel=\"shortcut icon\" href=\"Images/logor.png\"> " 
 				+ "</head>\n"
 				+ "<body>" 
@@ -133,7 +137,12 @@ public class Main extends HttpServlet {
 				+ "		<nav>\n" 
 				+ "			<ul>\n" 
 				+ "\n"
-				+ " <li class='imgCarro tooltip'> <a href='CarritoCompra'> <img src=\"Images/carro.svg\"> <span class='tooltiptext'>"+ contadorProductos +"</span></a></li>  "
+				+ "<li class='imgDollar tooltip';> \n"
+				+ "                    <a href='ventas.jsp'> \n"
+				+ "                        <img src=\"Images/dollar.svg\" width=\"30px\"> \n"
+				+ "                    </a>\n"
+				+ "                </li> "
+				+ " <li class='imgCarro tooltip'> <a href='carrito.jsp'> <img src=\"Images/carro.svg\"> <span class='tooltiptext'>"+ contadorProductos +"</span></a></li>  "
 				+ "<li class='imgUser tooltip'><a href='index.jsp'> <img src=\"Images/user.svg\"> <span class=\"tooltiptext\">"+ bienvenida + "</span> </a></li></ul>\n"
 				+ "		</nav>\n" 
 				+ "\n" 
@@ -141,31 +150,21 @@ public class Main extends HttpServlet {
 
 
 				if (usuarioAdmin) {
-					response.getWriter().append("<br>"
-							+ "<a href='annadirProducto.jsp?noValido=0'><button class='registerButton' id='bold'>A&ntildeadir Producto</button></a> <br>");
+					response.getWriter().append("<h1 class=\"titulo\">PRODUCTOS</h1><br>"
+							+ "<a href='annadirProducto.jsp?noValido=0' style=\"float: right; margin-right: 2%\"><button class='botonAnnadirProducto'>A&NtildeADIR PRODUCTO</button></a> <br><br><br><br>");
 				}
 				
 			
 
 			List<Producto> listaProducto = CRUDProducto.loadList();
 
-//			response.getWriter()
-//					.append("<table border=\"1\" class='tabla'>" + "				<tr>"
-//							+ "				<td class='tdId' id='bold'>ID</td>\n"
-//							+ "            <td class='tdName' id='bold'>Nombre</td>\n"
-//							+ "            <td class='tdPrice' id='bold'>Precio</td>\n"
-//							+ "            <td class='tdDescription' id='bold'>Descripcion</td>\n"
-//							+ "            <td class='tdCategoria' id='bold'>Categoria</td>"
-//							+ "			   <td class='tdStock' id='bold'>Stock</td>" + "				</tr>");
 			
 			response.getWriter().append(" <br> <div class=grid-container>");
 			for (Producto p : listaProducto) {
 				Categoria c = CRUDCategoria.readCategoria(p.getId_categoria());
-				int validStock = 0;//We will use this variable to know the actual stock
 				
-				if(ca != null) {//If ca is null this is gonna fail
-					validStock = ca.cantidadProductos(p.getId());
-				}
+				int	validStock = ca.cantidadProductos(p.getId());
+				
 				if((p.getStock()  - validStock)>0) {
 				
 				response.getWriter().append(" <div class=\"card\">\n"
@@ -175,28 +174,20 @@ public class Main extends HttpServlet {
 									+ "            <div class=\"description\">\n"
 									+ "                <a class=\"titulitos\">"+ p.getNombre() +"</a> "
 									+ "				   <small>"+c.getNombre()+" </small> <br>\n"
-									+                  p.getPrecio() + "$<br>\n"
+									+                  p.getPrecio() + " &#8364<br>\n"
 									+ "                <a class=\"descripcion\">" + p.getDescripcion() +"</a>  <br>\n"
 									+ "                <hr>\n"
 									+"					<form action='annadirAlCarro.jsp' method='post' id='form'>"
 									+ "				   		<Input type=\"number\" value='1' class='inputAnnadirCarro' name='cantidad' >"
 									+ "				   		<Input type=\"text\" name='id_articulo' value="+ p.getId() +" hidden>"
 									+ "				   		<Input type=\"text\" name='precio' value="+ p.getPrecio() +" hidden>"
-									+ "				   		<button type=\"submit\" class=\"buttonAnnadirCarro\">A&ntildeadir al carro</button> <br>"
+									+ "				   		<button type=\"submit\" class=\"buttonAnnadirCarro\">A&ntildeadir al carro</button> <br><br>"
 									+ "				   		Stock : "+ p.getStock()+ "<br>\n"
 									+ "					</form>"
 									+"            </div> \n"
 									+ "        </div> ");
 				}
 				
-//				response.getWriter().append("<tr>");
-//				response.getWriter().append("<td>" + p.getId() + "</td>");
-//				response.getWriter().append("<td>" + p.getNombre() + "</td>");
-//				response.getWriter().append("<td>" + p.getPrecio() + " $</td>");
-//				response.getWriter().append("<td>" + p.getDescripcion() + "</td>");			
-//				response.getWriter().append("<td>" + c.getNombre() + "</td>");
-//				response.getWriter().append("<td>" + p.getStock() + "</td>");
-//				response.getWriter().append("</tr>");
 			}
 			response.getWriter().append("</div>");
 			response.getWriter().append("</div>");

@@ -11,6 +11,10 @@ html, body{
 	/* font-family: Calibri; */
 }
 
+#bold{
+	font-weight: bold;
+}
+
 hr{
     margin-top: 0.7em; 
     margin-bottom: 0.9em; 
@@ -326,11 +330,11 @@ input:invalid{
     /* opacity: 95%; */
     margin: 0 auto;
     width: 24.95em; 
-    height: 43.5em;
+    height: 47em;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%); 
     border-radius: 8px;
     text-align: center;
-    margin-top: 5em;
+    margin-top: 3em;
 }
 
 /* ---------------------------------ESTILO PRODUCTOS------------------------------------ */
@@ -372,6 +376,10 @@ input:invalid{
     background-color: rgb(224, 224, 224);
     border-radius: 3px;
     font-weight: bolder;
+    /* ESTAS TRES LINEAS DE CODIGO SON MUY UTILES PARA PONER PUNTOS SUPENSIVOS */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     
 }
 
@@ -397,7 +405,7 @@ input:invalid{
 
 .buttonAnnadirCarro {
 	text-decoration:none;
-    width: 15em;
+    width: 12em;
     height: 52px;
     background: #76D045;
     color: white;
@@ -406,11 +414,13 @@ input:invalid{
     border-radius: 4px;
     border: 0px; 
     cursor:pointer;
+    font-size: medium;
+    font-weight: bolder;
 }
 
 .buttonAnnadirCarro:hover {
 	text-decoration:none;
-    width: 15em;
+    width: 12em;
     height: 52px;
     background: #62af39;
     color: white;
@@ -419,11 +429,13 @@ input:invalid{
     border-radius: 4px;
     border: 0px; 
     cursor:pointer;
+     font-size: medium;
+    font-weight: bolder;
 }
 
 .buttonAnnadirCarro:active {
 	text-decoration:none;
-    width: 15em;
+    width: 12em;
     height: 52px;
     background: #49822b;
     color: white;
@@ -433,6 +445,51 @@ input:invalid{
     border-radius: 10px;
     border: 0px; 
     cursor:pointer;
+     font-size: medium;
+    font-weight: bolder;
+}
+
+.botonAnnadirProducto {		
+	text-decoration:none;
+    width: 20em;
+    height: 55px;
+    background: #76D045;
+    color: white;
+    margin-top: 15px;
+    text-align: center;
+    border-radius: 8px;
+    border: 0px; 
+    font-weight: bolder;
+    font-size: large;
+}
+
+.botonAnnadirProducto:hover {
+    width: 20em;
+    height: 55px;
+    background: #76D045;
+    transform: scale(1.01);
+    transition: 0.3s ease-in-out;
+    color: white;
+    margin-top: 15px;
+    text-align: center;
+    border-radius: 8px;
+    border: 0px;
+    cursor:pointer;  
+    font-weight: bolder;
+    font-size: large;
+}
+
+.botonAnnadirProducto:active {
+    width: 20em;
+    height: 55px;
+    background: #6AC13B;
+    color: white;
+    margin-top: 15px;
+    text-align: center;
+    border-radius: 10px;
+    border: 0px;  
+    font-weight: bolder;
+    font-size: large; 
 }
 
 
@@ -561,3 +618,244 @@ input:invalid{
 .colorAzul{
     color: #006eb8;
 }
+
+/* ---------------------------------ESTILO CARRITO FINAL------------------------------------ */
+
+.fondoCarritoIzquierda{
+    display: grid;
+    grid-template-columns: repeat(3,1fr); 
+    align-items: center; 
+
+    background-color: rgb(255, 255, 255) ;
+    margin: 20px;
+    height: 140px;
+    /* height: auto; */
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%); 
+    border-radius: 8px;
+    margin-top: 1.25em;
+    margin-right: 0px;
+}
+
+.CarritoIzquierda{
+    float: left;
+    align-items: center;
+    width: 60%; 
+    margin-left: 2%;
+}
+
+.fondoCarritoDerecha{
+    float: right;
+    position: relative;
+
+    padding: 30px;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    background-color: rgb(255, 255, 255) ;
+    margin-right: 3%;
+    height: 140px;
+    height: auto;
+    width: 25%; 
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%); 
+    border-radius: 8px;
+    margin-top: 1.25em;
+}
+
+.photoCarritoFinal{
+    width: 100%;
+}
+
+.cancelar {
+	text-decoration:none;
+    width: 90%;
+    height: 55px;
+    background: #bb2929;
+    color: white;
+    margin-top: 0;
+    text-align: center;
+    border-radius: 4px;
+    border: 0px; 
+}
+
+.cancelar:hover {
+    width: 90%;
+    height: 55px;
+    transform: scale(1.01);
+    transition: 0.3s ease-in-out;
+    background: #942121;
+    color: white;
+    margin-top: 0;
+    text-align: center;
+    border-radius: 4px;
+    border: 0px;
+    cursor:pointer;  
+}
+
+.cancelar:active {
+    width: 90%;
+    height: 55px;
+    background: #811d1d;
+    opacity: 90%;
+    color: white;
+    margin-top: 0;
+    text-align: center;
+    border-radius: 8px;
+    border: 0px;   
+}
+
+.realizarCompra {
+	text-decoration:none;
+    width: 90%;
+    height: 55px;
+    background: #76D045;
+    color: white;
+    margin-top: 0;
+    text-align: center;
+    border-radius: 4px;
+    border: 0px; 
+}
+
+.realizarCompra:hover {
+    width: 90%;
+    height: 55px;
+    transform: scale(1.01);
+    transition: 0.3s ease-in-out;
+    background: #5ca535;
+    color: white;
+    margin-top: 0;
+    text-align: center;
+    border-radius: 4px;
+    border: 0px;
+    cursor:pointer;  
+}
+
+.realizarCompra:active {
+    width: 90%;
+    height: 55px;
+    background: #478029;
+    opacity: 90%;
+    color: white;
+    margin-top: 0;
+    text-align: center;
+    border-radius: 8px;
+    border: 0px;   
+}
+
+.letrasFinal{
+    font-weight: bolder;
+    font-size: x-large;
+}
+
+.imgCarroIn{
+    position:relative;
+    margin-right: 5.5px; 
+	padding-top: 12.5px;
+	padding-bottom: 2px;
+	padding-left: 6.5px;
+	padding-right: 13px;
+	width: 45px;
+	height: 52px;
+	cursor: pointer;
+	background-color: rgb(86 86 86 / 45%);
+	border-radius: 5px;
+}
+
+/* ---------------------------------ESTILO VENTAS------------------------------------ */
+
+.fondoVenta{
+    background-color: rgb(255, 255, 255, 0.95) ;
+    margin: 0 auto;
+    width: 95%; 
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%); 
+    border-radius: 8px;
+    margin-top: 2em;
+}
+
+.venta{
+    padding: 20px;
+    padding-top: 35px;
+}
+
+.letraTabla{
+    font-weight: bold;
+    background-color: rgb(37, 37, 37);
+    color: white;
+}
+
+.tabla{
+    width: 50%;
+	height: 5em;
+	border-collapse: collapse;
+	background-color: rgb(255, 255, 255);
+	padding: 0.5em;
+    margin: auto;
+	border: 1px solid black;
+	border-radius: 5px;
+	table-layout: fixed;
+}
+
+.fechaVentas{
+    
+    font-weight: bolder;
+    font-size: large;
+    margin-left: 50px;
+    margin-top: 20px;
+
+}
+
+
+.imgDollar{
+    position:relative;
+    margin-right: 5.5px; 
+	padding-top: 10px;
+	padding-bottom: 5px;
+	padding-left: 17.5px;
+	padding-right: 3px;
+	width: 45px;
+	height: 52px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.imgDollar:hover{
+    position:relative;
+    margin-right: 5.5px; 
+	padding-top: 10px;
+	padding-bottom: 5px;
+	padding-left: 17.5px;
+	padding-right: 3px;
+	width: 45px;
+	height: 52px;
+	cursor: pointer;
+	background-color: rgb(86 86 86 / 45%);
+	border-radius: 5px;
+}
+
+.imgDollarIn{
+    position:relative;
+    margin-right: 5.5px; 
+	padding-top: 10px;
+	padding-bottom: 5px;
+	padding-left: 17.5px;
+	padding-right: 3px;
+	width: 45px;
+	height: 52px;
+	cursor: pointer;
+	background-color: rgb(86 86 86 / 45%);
+	border-radius: 5px;
+}
+
+
+.titulo{
+	position: absolute;
+    background-color: rgb(37, 37, 37);
+    color: white;
+    margin-left: 2.5%;
+    width: 20%; 
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%); 
+    border-radius: 8px;
+    margin-top: 1em;
+    padding: 10px;
+    text-align: center;
+}
+
+

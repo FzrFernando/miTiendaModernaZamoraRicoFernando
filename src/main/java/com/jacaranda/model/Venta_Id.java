@@ -1,7 +1,7 @@
 package com.jacaranda.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 
@@ -9,14 +9,21 @@ public class Venta_Id implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String usuario;
 	private int id_producto;
-	private LocalDate fecha_venta;
+	private LocalDateTime fecha_venta;
 	
-	public Venta_Id(String usuario, int id_producto, LocalDate fecha_venta) {
+	public Venta_Id(String usuario, int id_producto, LocalDateTime fecha_venta) {
 		super();
 		this.usuario = usuario;
 		this.id_producto = id_producto;
 		this.fecha_venta = fecha_venta;
 	}
+
+	public Venta_Id() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 
 	public String getUsuario() {
 		return usuario;
@@ -34,11 +41,11 @@ public class Venta_Id implements Serializable{
 		this.id_producto = id_producto;
 	}
 
-	public LocalDate getFecha_venta() {
+	public LocalDateTime getFecha_venta() {
 		return fecha_venta;
 	}
 
-	public void setFecha_venta(LocalDate fecha_venta) {
+	public void setFecha_venta(LocalDateTime fecha_venta) {
 		this.fecha_venta = fecha_venta;
 	}
 
