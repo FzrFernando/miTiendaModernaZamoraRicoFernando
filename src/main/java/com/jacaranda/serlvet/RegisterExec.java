@@ -1,9 +1,11 @@
 package com.jacaranda.serlvet;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -95,6 +97,16 @@ public class RegisterExec extends HttpServlet {
 		
 		if (dateString == null || dateString.isEmpty()) {
 			noValido = 6;// fecha es nuloo
+			error = true;
+		}
+		
+		Date dateDate = Date.valueOf(request.getParameter("fecha_nacimiento"));
+		LocalDate fecha_nacimiento = dateDate.toLocalDate();
+		LocalDate diaHoy = LocalDate.now();
+		long dif = ChronoUnit.MONTHS.between(fecha_nacimiento, diaHoy);
+		
+		if (dif < 216) {
+			noValido = 20;// es menor de edad
 			error = true;
 		}
 		

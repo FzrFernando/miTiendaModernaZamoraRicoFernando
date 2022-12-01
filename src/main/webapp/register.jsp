@@ -61,6 +61,9 @@
 	                <p><% if (error==6){
 							%><small style=color:red;>Esta fecha es nula</small><br><%
 							}%></p>
+					<p><% if (error==20){ 
+							%><small style=color:red;>Eres menor de edad</small><br><% 
+							}%></p>
 	            </div>
 	
 	            <div class="introducir">
